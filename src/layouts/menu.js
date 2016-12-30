@@ -18,37 +18,50 @@ const Sider = React.createClass({
   },
   render() {
     return (
-      <Menu onClick={this.handleClick}
-        style={{ width: 240 }}
-        defaultOpenKeys={['sub1']}
-        selectedKeys={[this.state.current]}
-        mode="inline"
-      >
-        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-          <MenuItemGroup title="Item 1">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-          </MenuItemGroup>
-          <MenuItemGroup title="Item 2">
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </MenuItemGroup>
-        </SubMenu>
-        <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
-          <Menu.Item key="5">Option 5</Menu.Item>
-          <Menu.Item key="6">Option 6</Menu.Item>
-          <SubMenu key="sub3" title="Submenu">
-            <Menu.Item key="7">Option 7</Menu.Item>
-            <Menu.Item key="8">Option 8</Menu.Item>
-          </SubMenu>
-        </SubMenu>
-        <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
-        </SubMenu>
-      </Menu>
+      <div className="ant-row">
+        <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-5">
+          <Menu onClick={this.handleClick}
+            style={{ width: 240 }}
+            defaultOpenKeys={['sub1']}
+            selectedKeys={[this.state.current]}
+            mode="inline"
+          >
+            <SubMenu key="sub1" title={<span><Icon type="mail" /><span>工作流开发</span></span>}>
+              <SubMenu key="sub2" title="4G业务">
+                <Menu.Item key="1">text_workflow</Menu.Item>
+                <Menu.Item key="2">test_phone</Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub3" title="宽带业务">
+                <Menu.Item key="3">Option 3</Menu.Item>
+                <Menu.Item key="4">Option 4</Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub4" title="信令">
+                <Menu.Item key="5">Option 5</Menu.Item>
+                <Menu.Item key="6">Option 6</Menu.Item>
+              </SubMenu>
+            </SubMenu>
+            <SubMenu key="sub5" title={<span><Icon type="appstore" /><span>回收站</span></span>}>
+              <MenuItemGroup title="Item 1">
+                <Menu.Item key="7">Option 7</Menu.Item>
+                <Menu.Item key="8">Option 8</Menu.Item>
+              </MenuItemGroup>
+              <MenuItemGroup title="Item 2">
+                <Menu.Item key="9">Option 9</Menu.Item>
+                <Menu.Item key="10">Option 10</Menu.Item>
+              </MenuItemGroup>
+            </SubMenu>
+            <SubMenu key="sub6" title={<span><Icon type="setting" /><span>其他</span></span>}>
+              <Menu.Item key="11">Option 11</Menu.Item>
+              <Menu.Item key="12">Option 12</Menu.Item>
+              <Menu.Item key="13">Option 13</Menu.Item>
+              <Menu.Item key="14">Option 14</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </div>
+        <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-19">
+          {this.props.children}
+        </div>
+      </div>
     );
   },
 });
