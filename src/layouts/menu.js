@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 import 'antd/dist/antd.css';
+import '../styles/mystyle.css';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -15,6 +16,19 @@ const Sider = React.createClass({
     this.setState({
       current: e.key,
     });
+  },
+  componentDidMount() {
+    document.querySelector('.ant-menu-submenu-title').addEventListener('mouseup', e => {
+      console.log('mouseup');
+      e.preventDefault();
+      if (!e) e = window.event;
+      if (e.button == 2) {
+        this.refs.myTopPopup.style.display = 'block';
+      }
+    });
+  },
+  componentWillUnmount() {
+    document.querySelector('.ant-menu-submenu-title').removeEventListener('mouseup');
   },
   render() {
     return (
@@ -57,6 +71,16 @@ const Sider = React.createClass({
               <Menu.Item key="14">Option 14</Menu.Item>
             </SubMenu>
           </Menu>
+          <div className="mypopup">
+            <div className="myTopPopup" ref='myTopPopup'>
+              <div>新建目录</div>
+              <div>新建工作流</div>
+            </div>
+            <div className="mySubPopup" ref='mySubPopup'>
+              <div>还原到</div>
+              <div>彻底删除</div>
+            </div>
+          </div>
         </div>
         <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-19">
           {this.props.children}

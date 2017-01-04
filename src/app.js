@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory, onEnter } from 'react-router
 import { DatePicker, message } from 'antd';
 import 'antd/dist/antd.css';
 import Menu from './layouts/menu';
+import MyMenu from './layouts/MyMenu';
 import Tabs from './containers/myoverflow';
 
 const reducer1 = (state='red1', action) => {
@@ -44,7 +45,7 @@ render(
   <Provider store={store} >
     <div>
     <Router history={browserHistory}>
-      <Route path="/" component={Menu} >
+      <Route path="/" component={MyMenu} >
         <IndexRoute component={App} />
         <Route path="myoverflow" component={Tabs} />
       </Route>
