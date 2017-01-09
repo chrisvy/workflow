@@ -6,10 +6,10 @@ import MyMenuItem from './MyMenuItem';
 class MyMenu extends Component {
 	static defaultProps = {
 		menus: {
-			'工作流开发': {'4G业务': ['text_workflow', 'text_phone'], '宽带业务': [], '信令': []},
-			'回收站': {},
-			'其他': {}
-		}
+      '工作流开发': {'4G业务': ['text_workflow', 'text_phone'], '宽带业务': ['21','22'], '信令': []},
+      '回收站': {'d1':['d1.1','d1.2']},
+      '其他': {}
+    }
 	};
 
 	constructor(props) {

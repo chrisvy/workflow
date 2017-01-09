@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
+var classNames = require('classnames');
 import 'antd/dist/antd.css';
 import '../styles/mystyle.css';
 import Level2 from './Level2';
 
 class Level1 extends Component {
+	constructor(props) {
+    super(props);
+
+    this.state = {
+    	divOpen : false
+    };
+  }
+
+	handleClick = (e) => {
+		if (e.target && e.target.matches('div.top-menu-title')) {
+			this.setState({divOpen : !this.state.divOpen});
+		}
+	}
+
 	render() {
-		let { level1Items, topItem } = this.props;
-		console.log(level1Items);
+		let { level1Items, topItem, handleClickLi, path } = this.props;
 		let keyIndex = 0;
 		let topMenuKey = Object.keys(level1Items);//['工作流开发', '回收站', '其他']
+		let divClass = classNames("top-menu", {"top-menu-open" : this.state.divOpen});
 		return (
 			<div>
-				<li className="topMenu">
-					<div  className="topMenu-title">{topItem}</div>
+				<li className={divClass} onClick={this.handleClick} data-path={path}>
+					<div className="top-menu-title">{topItem}</div>
 					<ul>
 					{
 						topMenuKey.map(function(item, index) {
-							return <Level2 key={'in' + index} subMenu={item} subItems={level1Items[item]}></Level2>
+							const pathData = path + '-' + index;
+							return <Level2 key={'in' + index} subMenu={item} subItems={level1Items[item]} handleClickLi={handleClickLi} path={pathData}></Level2>
 						})
 					}
 					</ul>

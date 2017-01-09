@@ -18,14 +18,14 @@ const Sider = React.createClass({
     });
   },
   componentDidMount() {
-    document.querySelector('.ant-menu-submenu-title').addEventListener('mouseup', e => {
-      console.log('mouseup');
-      e.preventDefault();
-      if (!e) e = window.event;
-      if (e.button == 2) {
-        this.refs.myTopPopup.style.display = 'block';
-      }
-    });
+    // document.querySelector('.ant-menu-submenu-title').addEventListener('mouseup', e => {
+    //   console.log('mouseup');
+    //   e.preventDefault();
+    //   if (!e) e = window.event;
+    //   if (e.button == 2) {
+    //     this.refs.myTopPopup.style.display = 'block';
+    //   }
+    // });
   },
   componentWillUnmount() {
     document.querySelector('.ant-menu-submenu-title').removeEventListener('mouseup');
@@ -71,7 +71,7 @@ const Sider = React.createClass({
               <Menu.Item key="14">Option 14</Menu.Item>
             </SubMenu>
           </Menu>
-          <div className="mypopup">
+          {/* <div className="mypopup">
             <div className="myTopPopup" ref='myTopPopup'>
               <div>新建目录</div>
               <div>新建工作流</div>
@@ -80,8 +80,8 @@ const Sider = React.createClass({
               <div>还原到</div>
               <div>彻底删除</div>
             </div>
-          </div>
-        </div>
+          </div> */}
+        </div> 
         <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-19">
           {this.props.children}
         </div>

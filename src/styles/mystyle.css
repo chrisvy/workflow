@@ -1,14 +1,14 @@
 .mypopup {
-	position: relative;
+  position: relative;
 }
 
 .myTopPopup,
 .mySubPopup {
-	display: none;
+  display: none;
 }
 
 .rootMenu {
-	outline: none;
+  outline: none;
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
@@ -19,37 +19,54 @@
   line-height: 30px;
 }
 
-.topMenu {
-	padding: 0;
+.top-menu > ul {
+  display: none;
+}
+
+.top-menu-open > ul {
+  display: block;
+}
+
+.top-menu {
+  padding: 0;
   font-size: 12px;
   line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.menuItem {
-	display: none;
+.menu-item-open menu-item-title,
+.menu-item-open item {
+  display: block;
 }
 
-.topMenu-title,
-.menuItem-title {
+.menu-item > ul {
+  display: none;
+}
+
+.menu-item-open > ul {
+  display: block;
+}
+
+.top-menu-title,
+.menu-item-title {
   margin: 0;
   position: relative;
   display: block;
   white-space: nowrap;
 }
 
-.topMenu-title {
-	padding: 0 30px;
-	border: solid #e8e8e8 1px;
+.top-menu-title {
+  padding: 0 30px;
+  border: solid #e8e8e8 1px;
 }
 
-.menuItem-title {
-	padding: 0 40px;
+.menu-item-title {
+  padding: 0 40px;
 }
 
-.topMenu-title:before,
-.menuItem-title:before {
+.top-menu-title:before,
+.menu-item-title:before {
   font-family: "anticon" !important;
   font-style: normal;
   vertical-align: baseline;
@@ -68,28 +85,32 @@
   zoom: 1;
 }
 
-.topMenu-title:before {
-	left: 10px;
+.top-menu-title:before {
+  left: 10px;
 }
-.menuItem-title:before {
-	left: 20px;
+.menu-item-title:before {
+  left: 20px;
 }
 
-.topMenu-open > .topMenu-title:before,
-.menuItem-open > .menuItem-title:before {
+.top-menu-open > .top-menu-title:before,
+.menu-item-open > .menu-item-title:before {
     -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
     transform: rotate(0deg) scale(0.75);
 }
 
-.items {
-	padding: 0 40px;
+.item {
+  padding: 0 40px;
 }
 
-.topMenu-title:hover,
-.menuItem-title:hover,
-.items:hover {
-	background-color: #dff0fe;
+.top-menu-title:hover,
+.menu-item-title:hover,
+.item:hover {
+  background-color: #dff0fe;
 }
 
-
+.item-selected {
+  cursor: pointer;
+  background-color: #ecf6fd;
+  border-right: solid 3px blue;
+}
 

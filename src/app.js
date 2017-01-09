@@ -5,20 +5,13 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory, onEnter } from 'react-router';
 import { DatePicker, message } from 'antd';
 import 'antd/dist/antd.css';
+import Reducer from './redux/reducer';
 import Menu from './layouts/menu';
+// import Context from './layouts/context';
 import MyMenu from './layouts/MyMenu';
 import Tabs from './containers/myoverflow';
 
-const reducer1 = (state='red1', action) => {
-  switch (action.type) {
-    case 'DO':
-      return 'reducer1.0'
-    default:
-      return 'reducer1.1'
-  }
-}
-
-const store = createStore(reducer1);
+const store = createStore(Reducer);
 
 class App extends React.Component {
   constructor(props) {
