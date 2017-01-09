@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../styles/mystyle.css';
 import MyMenuItem from './MyMenuItem';
+import Search from './Search';
 
 class MyMenu extends Component {
 	static defaultProps = {
@@ -34,6 +35,7 @@ class MyMenu extends Component {
     return (
       <div className="ant-row">
         <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-5">
+          <Search />
           <div className="mymenu">
           	<MyMenuItem menus={this.state.menus}/>
           </div>

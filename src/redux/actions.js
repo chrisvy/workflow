@@ -3,11 +3,12 @@ const select = (selectKey) => ({
 	data: selectKey
 })
 
-const deselect = () => ({
-	type: 'DESELECT'
+const search = (value) => ({
+	type: 'SEARCH',
+	data: value
 })
 
-export {select, deselect};
+export {select, search};
 
 
 
