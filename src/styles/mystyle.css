@@ -99,6 +99,7 @@
 }
 
 .item {
+  cursor: pointer;
   padding: 0 40px;
 }
 
@@ -109,9 +110,13 @@
 }
 
 .item-selected {
-  cursor: pointer;
   background-color: #ecf6fd;
   border-right: solid 3px blue;
+}
+
+.item-searched {
+  background-color: #42A6F6;
+  border: solid 1px #fff;
 }
 
 .anticon:hover {

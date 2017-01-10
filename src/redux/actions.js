@@ -3,12 +3,22 @@ const select = (selectKey) => ({
 	data: selectKey
 })
 
-const search = (value) => ({
-	type: 'SEARCH',
-	data: value
+const open = (openKey) => ({
+	type: 'OPEN',
+	data: openKey
 })
 
-export {select, search};
+const search = (searchVal) => ({
+	type: 'SEARCH',
+	data: searchVal
+})
+
+const searchKey = (path) => ({
+	type: 'SEARCHKEY',
+	data: path
+})
+
+export {select, open, search, searchKey};
 
 
 

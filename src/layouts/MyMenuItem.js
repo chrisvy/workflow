@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { select, deselect } from '../redux/actions';
-import 'antd/dist/antd.css';
-import '../styles/mystyle.css';
 import Level1 from './Level1';
 
 class MyMenuItem extends Component {
@@ -18,15 +16,15 @@ class MyMenuItem extends Component {
 
 	render() {
 		const handleClickLi = this.handleClickLi;
-		let allMenu = this.props.menus;
+		let menus = this.props.menus;
 		let keyIndex = 0;
-		let topMenu = Object.keys(allMenu);//['工作流开发', '回收站', '其他']
+		let topMenu = Object.keys(menus);//['工作流开发', '回收站', '其他']
 		return (
 			<div>
 				<ul className="rootMenu">
 				{
 					topMenu.map(function(item, index) {
-						return <Level1 key={'level1'+index} className="level1" topItem={item} level1Items={allMenu[item]} handleClickLi={handleClickLi} path={index}></Level1>
+						return <Level1 key={'level1'+index} className="level1" topItem={item} level1Items={menus[item]} handleClickLi={handleClickLi} path={"l" + index}></Level1>
 					})
 				}
 				</ul>
@@ -35,4 +33,9 @@ class MyMenuItem extends Component {
 	}
 }
 
-export default connect()(MyMenuItem);
+const mapStateToProps = (state) => {
+	const { menus } = state;
+	return { menus } ;
+}
+
+export default connect(mapStateToProps)(MyMenuItem);
