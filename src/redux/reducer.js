@@ -1,11 +1,10 @@
 // import { combineReducers } from 'redux';
 
 const defaultState = {
-  menus: {
-    '工作流开发': {'4G业务': ['text_workflow', 'text_phone'], '宽带业务': ['21','22'], '信令': []},
-    '回收站': {'d1':['d1.1','d1.2']},
-    '其他': {}
-  },
+  menus: [
+    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': []}]},
+    {'回收站': [{'d1':['d1.1','d1.2']}]}
+  ],
 	itemSelected: false,
   selectKey: null,
   search: '',

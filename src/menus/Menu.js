@@ -1,34 +1,14 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../styles/mystyle.css';
-// import MyMenuItem from './MyMenuItem';
-import MyMenuItem from '../menus/MenuItems';
-import Search from './Search';
+import MenuItems from './MenuItems';
+import Search from '../layouts/Search';
 
 class MyMenu extends Component {
-	static defaultProps = {
-		menus: {
-      '工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': []}],
-      '回收站': [{'d1':['d1.1','d1.2']}],
-    }
-	};
 
 	constructor(props) {
 		super(props);
-
-		const currProps = this.props;
-		this.state = {
-			current: '1',
-			...currProps
-		}
 	}
-
-	handleClick(e) {
-    console.log('click ', e);
-    this.setState({
-      current: e.key,
-    });
-  }
 
 	render() {
 		
@@ -37,7 +17,7 @@ class MyMenu extends Component {
         <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-5">
           <Search />
           <div className="mymenu">
-          	<MyMenuItem menus={this.state.menus}/>
+          	<MenuItems/>
           </div>
           <div className="mypopup">
             <div className="myTopPopup" ref='myTopPopup'>
