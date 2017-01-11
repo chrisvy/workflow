@@ -13,12 +13,17 @@ const search = (searchVal) => ({
 	data: searchVal
 })
 
-const searchKey = (path) => ({
-	type: 'SEARCHKEY',
-	data: path
+const searchResults = (results) => ({
+	type: 'SEARCHRESULTS',
+	data: results
 })
 
-export {select, open, search, searchKey};
+const deleteSearchItem = (index) => ({
+	type: 'DELETESEARCHITEM',
+	data: index
+})
+
+export {select, open, search, searchResults, deleteSearchItem};
 
 
 

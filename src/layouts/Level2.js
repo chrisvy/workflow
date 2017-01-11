@@ -14,26 +14,13 @@ class Level2 extends Component {
 
 	handleClick = (e) => {
 		if (e.target && e.target.matches('div.menu-item-title')) {
-			// this.setState({divOpen : !this.state.divOpen});
-		// 	this.setState(function(prevState, props){
-		// 		if (props.menuStatus[props.path] || prevState.divOpen) {
-		// 			return {
-	 //      		divOpen: false
-		// 	    }
-		// 		} else {
-		// 			return {
-	 //      		divOpen: true
-		// 	    }
-		// 		}
-		//   });
-		// }
-			this.props.dispatch(open(this.props.path));
+			this.setState({divOpen : !this.state.divOpen});
 		}
 	}
 
 	render() {
-		const { subMenu, subItems, handleClickLi, path, itemSelected, selectKey, menuStatus, subMenuStatus } = this.props;
-		let divClass = classNames("menu-item", {"menu-item-open" : subMenuStatus[path] || this.state.divOpen});
+		const { subMenu, subItems, handleClickLi, path, itemSelected, selectKey, menuStatus } = this.props;
+		let divClass = classNames("menu-item", {"menu-item-open" : this.state.divOpen});
 		let keyIndex = 0;
 		return (
 			<div>
@@ -44,7 +31,7 @@ class Level2 extends Component {
 						subItems.map((item, index) => {
 							const pathData = path + "l" + index;
 							// console.log('l3', menuStatus, pathData);
-							const itemClass = classNames("item", {"item-selected" : (itemSelected && selectKey === pathData), "item-searched" : menuStatus[pathData] });
+							const itemClass = classNames("item", {"item-selected" : (itemSelected && selectKey === pathData) });
 							return <li key={'item'+index} className={itemClass} onClick={handleClickLi(pathData)} data-path={pathData}>{item}</li>
 						})
 					}
@@ -56,8 +43,8 @@ class Level2 extends Component {
 }
 
 const mapStateToProps = state => {
-	const { itemSelected, selectKey, menuStatus, subMenuStatus } = state;
-	return { itemSelected, selectKey, menuStatus, subMenuStatus };
+	const { itemSelected, selectKey, menuStatus } = state;
+	return { itemSelected, selectKey, menuStatus };
 }
 
 export default connect(mapStateToProps)(Level2);

@@ -6,12 +6,10 @@ const defaultState = {
     '回收站': {'d1':['d1.1','d1.2']},
     '其他': {}
   },
-  menuStatus: {},
-  subMenuStatus: {},
-  topMenuStatus: {},
 	itemSelected: false,
   selectKey: null,
-  search: ''
+  search: '',
+  searchResults: [],
 };
 
 const reducer = (state=defaultState, action) => {
@@ -20,56 +18,39 @@ const reducer = (state=defaultState, action) => {
       if (state.selectKey === action.data) {
       	return Object.assign({}, {
           ...state,
-          menuStatus: {},
         	itemSelected: false,
       		selectKey: null
         })
       } else {
       	return Object.assign({}, {
           ...state,
-          menuStatus: {},
         	itemSelected: true,
       		selectKey: action.data
-        })
-      }
-    case 'OPEN':
-      // const first = action.data.indexOf('l');
-      let last = action.data.lastIndexOf('l');
-      if (0 === last) {
-        return Object.assign({}, {
-          ...state,
-          menuStatus: {},
-          topMenuStatus: {...state.topMenuStatus, [action.data]: !state.topMenuStatus[action.data]},
-        })
-      } else {
-        return Object.assign({}, {
-          ...state,
-          menuStatus: {},
-          subMenuStatus: {...state.subMenuStatus, [action.data]: !state.subMenuStatus[action.data]},
-          topMenuStatus: {...state.topMenuStatus, [action.data.slice(0, last)]: !state.topMenuStatus[action.data]},
         })
       }
     case 'SEARCH':
       return Object.assign({}, {
         ...state,
-        menuStatus: {},
-        subMenuStatus: {},
-        topMenuStatus: {},
         search: action.data,
-        itemSelected: false,
-        selectKey: null
       })
-    case 'SEARCHKEY':
-      const data = action.data.slice(1, action.data.length-1);
-      last = data.lastIndexOf('l');
-      const sub = data.slice(0, last);
-      const second = sub.lastIndexOf('l');
-      const top = sub.slice(0, second);
+    case 'SEARCHRESULTS':
+      // const data = action.data.slice(1, action.data.length-1);
+      // last = data.lastIndexOf('l');
+      // const sub = data.slice(0, last);
+      // const second = sub.lastIndexOf('l');
+      // const top = sub.slice(0, second);
       return Object.assign({}, {
         ...state,
-        menuStatus: {...(state.menuStatus), [data]: true},
-        subMenuStatus: {...(state.subMenuStatus), [sub]: true},
-        topMenuStatus: {...(state.topMenuStatus), [top]: true},
+        searchResults: action.data,
+      })
+    case 'DELETESEARCHITEM':
+      let tmpSearchResults = state.searchResults.slice(0);
+      console.log('he1', action.data, tmpSearchResults)
+      tmpSearchResults.splice(action.data,1);
+      console.log('he2', tmpSearchResults);
+      return Object.assign({}, {
+        ...state,
+        searchResults: tmpSearchResults,
       })
     default:
       return state
