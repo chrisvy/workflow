@@ -5,6 +5,7 @@ import Item from './Item';
 import SubMenu from './SubMenu';
 import { parsedMenu } from '../redux/actions';
 import '../styles/mystyle.css';
+// import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 class MyMenuItem extends Component {
 	constructor(props) {
@@ -14,6 +15,10 @@ class MyMenuItem extends Component {
     	children: null
     }
   }
+	
+	handleClick(e, data) {
+	  console.log(data);
+	}
 
 	// menus: [
  //    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': []}]},

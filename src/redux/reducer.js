@@ -21,19 +21,19 @@ const reducer = (state=defaultState, action) => {
         parsedRes: action.data,
       })
     case 'SELECT':
-      if (state.selectKey === action.data) {
-      	return Object.assign({}, {
-          ...state,
-        	itemSelected: false,
-      		selectKey: null
-        })
-      } else {
+      // if (state.selectKey === action.data) {
+      // 	return Object.assign({}, {
+      //     ...state,
+      //   	itemSelected: false,
+      // 		selectKey: null
+      //   })
+      // } else {
       	return Object.assign({}, {
           ...state,
         	itemSelected: true,
       		selectKey: action.data
         })
-      }
+      // }
     case 'SEARCH':
       return Object.assign({}, {
         ...state,

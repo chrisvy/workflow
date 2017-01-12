@@ -1,0 +1,22 @@
+.context-menu {
+	display: none;
+	position: fixed;
+	border: solid 1px #eee;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+}
+
+.context-menu-show {
+	display: block;
+}
+
+.context-item {
+	cursor: pointer;
+	line-height: 30px;
+	padding: 0 20px;
+}
+
+.context-item:hover {
+	background-color: #eee;
+}
+

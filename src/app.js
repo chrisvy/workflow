@@ -7,7 +7,7 @@ import { DatePicker, message } from 'antd';
 import 'antd/dist/antd.css';
 import './styles/mystyle.css';
 import Reducer from './redux/reducer';
-import Menu from './layouts/menu';
+// import Menu from './layouts/menu';
 // import Context from './layouts/context';
 import MyMenu from './layouts/MyMenu';
 import Tabs from './containers/myoverflow';
