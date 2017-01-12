@@ -98,66 +98,47 @@
   padding: 0 20px;
 }
 
-.rootMenu {
-  outline: none;
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none;
-  z-index: 1050;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  color: #666;
-  background: #fff;
-  line-height: 30px;
-}
-
-.top-menu > ul {
+.topmenu > ul {
   display: none;
 }
 
-.top-menu-open > ul {
+.topmenu-open > ul {
   display: block;
 }
 
-.top-menu {
+.topmenu {
   padding: 0;
   font-size: 12px;
-  line-height: 30px;
+  line-height: 36px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.menu-item-open menu-item-title,
-.menu-item-open item {
+.submenu-open submenu-title,
+.submenu-open item {
   display: block;
 }
 
-.menu-item > ul {
+.submenu > ul {
   display: none;
 }
 
-.menu-item-open > ul {
+.submenu-open > ul {
   display: block;
 }
 
-.top-menu-title,
-.menu-item-title {
+.submenu-title {
   margin: 0;
   position: relative;
   display: block;
   white-space: nowrap;
 }
 
-.top-menu-title {
-  padding: 0 30px;
-  border: solid #e8e8e8 1px;
-}
-
-.menu-item-title {
+.submenu-title {
   padding: 0 40px;
 }
 
-.top-menu-title:before,
-.menu-item-title:before {
+.submenu-title:after {
   font-family: "anticon" !important;
   font-style: normal;
   vertical-align: baseline;
@@ -176,36 +157,34 @@
   zoom: 1;
 }
 
-.top-menu-title:before {
-  left: 10px;
-}
-.menu-item-title:before {
-  left: 20px;
+.submenu-title:after {
+  right: 20px;
 }
 
-.top-menu-open > .top-menu-title:before,
-.menu-item-open > .menu-item-title:before {
+.top-menu-open > .top-menu-title:after,
+.submenu-open > .submenu-title:after {
     -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
     transform: rotate(0deg) scale(0.75);
 }
 
-.item {
+.menu-item {
   cursor: pointer;
   padding: 0 40px;
+  line-height: 30px;
 }
 
 .top-menu-title:hover,
-.menu-item-title:hover,
-.item:hover {
+.submenu-title:hover,
+.menu-item:hover {
   background-color: #dff0fe;
 }
 
-.item-selected {
+.menu-item-selected {
   background-color: #ecf6fd;
   border-right: solid 3px blue;
 }
 
-.item-searched {
+.menu-item-searched {
   background-color: #42A6F6;
   border: solid 1px #fff;
 }

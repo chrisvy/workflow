@@ -8,16 +8,15 @@ class Level2 extends Component {
     super(props);
   }
 
-	handleClick = (path) => {
-		// if (e.target && e.target.matches('div.menu-item-title')) {
-			this.props.dispatch(select(path));
-		// }
+	handleClick = (path) => e => {
+		e.stopPropagation();
+		this.props.dispatch(select(path));
 	}
 
 	render() {
-		const { path, text, itemSelected, selectKey } = this.props;
-		const itemClass = classNames("item", {"item-selected" : (itemSelected && selectKey === path) });
-		return <li className={itemClass} onClick={this.handleClick(path)} data-path={path}>{item}</li>
+		const { path, text, itemSelected, selectKey, level } = this.props;
+		const itemClass = classNames("menu-item", {"menu-item-selected" : (itemSelected && selectKey === path) });
+		return <li className={itemClass} onClick={this.handleClick(path)} data-path={path} style={{"paddingLeft": level*24+24}}>{text}</li>
 	}
 }
 

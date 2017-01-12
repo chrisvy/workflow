@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 var classNames = require('classnames');
 import Item from './Item';
 
@@ -7,28 +8,27 @@ class SubMenu extends Component {
     super(props);
 
     this.state = {
-    	divOpen : false
+    	divOpen: false,
     };
   }
 
-	handleClick = (e) => {
-		if (e.target && e.target.matches('div.top-menu-title')) {
+	handleClick = path => (e) => {
+		e.stopPropagation();
+		// if (e.target && e.target.matches('div.top-menu-title')) {
 			this.setState({divOpen: !this.state.divOpen});
-		}
+		// }
 	}
 
 	render() {
-		const { path, text, children } = this.props;
-		const divClass = classNames("sub-menu", {"sub-menu-open" : this.state.divOpen});//{divOpen : !this.state.divOpen}
+		const { path, text, children, level } = this.props;
+		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : this.state.divOpen});//{divOpen : !this.state.divOpen}
 		return (
-			<div>
-				<li className={divClass} onClick={this.handleClick} data-path={path}>
-					<div className="top-menu-title">{text}</div>
-					<ul>
-						{ children }
-					</ul>
-				</li>
-			</div>
+			<li className={divClass} onClick={this.handleClick(path)} data-path={path}>
+				<div className="submenu-title" style={{"paddingLeft": level*24+24}}>{text}</div>
+				<ul>
+					{ children }
+				</ul>
+			</li>
 		)
 	}
 }

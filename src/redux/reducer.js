@@ -3,16 +3,23 @@
 const defaultState = {
   menus: [
     {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': []}]},
-    {'回收站': [{'d1':['d1.1','d1.2']}]}
+    {'回收站': [{'d1':['d1.1','d1.2']}]},
+    'heh'
   ],
 	itemSelected: false,
   selectKey: null,
   search: '',
   searchResults: [],
+  parsedRes: {}
 };
 
 const reducer = (state=defaultState, action) => {
   switch (action.type) {
+    case 'PARSEDMENU':
+      return Object.assign({}, {
+        ...state,
+        parsedRes: action.data,
+      })
     case 'SELECT':
       if (state.selectKey === action.data) {
       	return Object.assign({}, {

@@ -37,29 +37,27 @@ class Search extends Component {
 
 	handleSearch = (searchVal) => {
 		this.setState({searchResultsShow: true});
-		console.log('1 dispatch search', searchVal);
 		let results = [];
-		const { dispatch, menus } = this.props;
+		const { dispatch, menus, parsedRes } = this.props;
+		// console.log('1 dispatch search', searchVal);
 		if (searchVal.length) {
 			let escapedSearchText = searchVal.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 			let regex = this.get_search_regex(escapedSearchText);
 			let highlightRegex = this.get_highlight_regex(escapedSearchText);
-			const topMenus = Object.keys(menus);
 			const search_string_match = this.search_string_match;
-			topMenus.map(function(topMenu, topIndex) {
-				let filesAll = menus[topMenu];
-				let files = Object.keys(filesAll);
-				files.map(function(file, fileIndex) {
-					let workflowsArr = filesAll[file];
-					workflowsArr.map(function(workflow, workIndex) {
-						if (search_string_match(workflow, regex)) {
-							results.push({workflow, path: "'l"+topIndex+"l"+fileIndex+"l"+workIndex+"'"});
-						}
-					});
-				})
+			const works = parsedRes["works"];
+			const pathArr = Object.keys(works);//{"path1":"name1","path2":"name2",...}
+			// console.log('2 search', pathArr);
+			pathArr.map(function(path, index) {
+				const workflow = works[path];
+				// console.log('3 workflow', workflow);
+				if (search_string_match(workflow, regex)) {
+					// console.log('4 match', workflow);
+					results.push({workflow, path});
+				}
 			});
 			dispatch(searchResults(results));
-			console.log('9 dispatch searchKey', results);
+			// console.log('9 dispatch searchKey', results);
 		} else {
 			dispatch(searchResults(results));
 		}
@@ -150,8 +148,8 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { search, menus, searchResults } = state;
-	return { search, menus, searchResults };
+	const { search, menus, parsedRes, searchResults } = state;
+	return { search, menus, parsedRes, searchResults };
 }
 
 export default connect(mapStateToProps)(Search);

@@ -17,7 +17,9 @@ class MyMenu extends Component {
         <div className="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-5">
           <Search />
           <div className="mymenu">
-          	<MenuItems/>
+          	<ul className="root-menu">
+              <MenuItems/>
+            </ul>
           </div>
           <div className="mypopup">
             <div className="myTopPopup" ref='myTopPopup'>

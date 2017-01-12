@@ -1,11 +1,16 @@
-const select = (selectKey) => ({
-	type: 'SELECT',
-	data: selectKey
+const parsedMenu = (results) => ({
+	type: 'PARSEDMENU',
+	data: results
 })
 
 const open = (openKey) => ({
 	type: 'OPEN',
 	data: openKey
+})
+
+const select = (selectKey) => ({
+	type: 'SELECT',
+	data: selectKey
 })
 
 const search = (searchVal) => ({
@@ -23,7 +28,8 @@ const deleteSearchItem = (index) => ({
 	data: index
 })
 
-export {select, open, search, searchResults, deleteSearchItem};
+
+export {parsedMenu, open, select, search, searchResults, deleteSearchItem};
 
 
 
