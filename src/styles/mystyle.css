@@ -98,6 +98,10 @@
   padding: 0 20px;
 }
 
+.mymenu {
+  border: 1px solid #e9e9e9;
+}
+
 .topmenu > ul {
   display: none;
 }
