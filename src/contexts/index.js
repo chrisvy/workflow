@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import MenuItems from '../menus/MenuItems';
 import ContextMenu from './ContextMenu';
 import ContextTrigger from './ContextTrigger';
-import DisplayContainer from '../utils/DisplayContainer';
+import HideDisplayContainer from '../utils/HideDisplayContainer';
 
-@DisplayContainer
+@HideDisplayContainer
 class Contexts extends Component {
 
 	static defaultProps = {
@@ -23,7 +23,6 @@ class Contexts extends Component {
 	}
 
 	handleContextClick = (event) => {
-    console.log("handleContextClick");
     event.preventDefault();
     event.stopPropagation();
 
@@ -50,7 +49,7 @@ class Contexts extends Component {
 
 	render() {
 		
-		const { wrapDisplayProps } = this.props;
+		const { wrapDisplayProps, contextInfo } = this.props;
     return (
       <div className="ant-row">
         <ContextTrigger onContextMenu={this.handleContextClick}>
@@ -60,7 +59,7 @@ class Contexts extends Component {
             </ul>
           </div>
         </ContextTrigger>
-        <ContextMenu menuShow={wrapDisplayProps.showFlag} x={this.state.x} y={this.state.y} contextInfo={this.props.contextInfo} />
+        <ContextMenu menuShow={wrapDisplayProps.showFlag} x={this.state.x} y={this.state.y} contextInfo={contextInfo} />
       </div>
     );
   }
@@ -72,5 +71,5 @@ const mapStateToProps = state => {
 	return { contextInfo };
 }
 
-export default connect()(Contexts);
+export default connect(mapStateToProps)(Contexts);
 

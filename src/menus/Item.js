@@ -14,7 +14,6 @@ class Level2 extends Component {
 	}
 
 	handleContextMenu = (path, contextType) => (e) => {
-		console.log(path);
 		this.props.dispatch(contextItem(path, contextType));
 	}
 

@@ -10,7 +10,8 @@ const defaultState = {
   search: '',
   searchResults: [],
   parsedRes: {},
-  contextInfo: null
+  contextInfo: null,
+  contextOperate: ''
 };
 
 const reducer = (state=defaultState, action) => {
@@ -55,9 +56,7 @@ const reducer = (state=defaultState, action) => {
       })
     case 'DELETESEARCHITEM':
       let tmpSearchResults = state.searchResults.slice(0);
-      console.log('he1', action.data, tmpSearchResults)
       tmpSearchResults.splice(action.data,1);
-      console.log('he2', tmpSearchResults);
       return Object.assign({}, {
         ...state,
         searchResults: tmpSearchResults,
@@ -67,6 +66,15 @@ const reducer = (state=defaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: action.data,
+      })
+    case 'CONTEXTOPERATE':
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,
+          contextType: ''
+        },
+        contextOperate: action.data,
       })
     default:
       return state

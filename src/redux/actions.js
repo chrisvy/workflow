@@ -36,8 +36,13 @@ const contextItem = (path, contextType) => ({
 	}
 })
 
+const contextOperate = (operate) => ({
+	type: 'CONTEXTOPERATE',
+	data: operate
+})
 
-export {parsedMenu, open, select, search, searchResults, deleteSearchItem, contextItem};
+
+export {parsedMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate};
 
 
 

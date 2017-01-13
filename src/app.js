@@ -1,17 +1,32 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory, onEnter } from 'react-router';
 import { DatePicker, message } from 'antd';
 import 'antd/dist/antd.css';
-import Reducer from './redux/reducer';
+import reducer from './redux/reducer';
 // import Menu from './layouts/menu';
 // import Context from './layouts/context';
 import MyMenu from './layouts/MyMenu';
 import Tabs from './containers/myoverflow';
+import DevTools from './containers/DevTools';
 
-const store = createStore(Reducer);
+const initialState = {}
+const createStoreWithMiddleware = compose(
+  applyMiddleware(
+    thunk
+  ),
+  DevTools.instrument()
+)
+
+// const store = createStore(
+//   reducer,
+//   initialState,
+//   createStoreWithMiddleware
+// )
+const store = createStore(reducer);
 
 class App extends React.Component {
   constructor(props) {

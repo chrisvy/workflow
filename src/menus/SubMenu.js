@@ -21,7 +21,6 @@ class SubMenu extends Component {
 	}
 
 	handleContextMenu = path => (e) => {
-		console.log(path);
 		this.props.dispatch(contextItem(path, "subFile"));
 	}
 
@@ -30,7 +29,7 @@ class SubMenu extends Component {
 		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : this.state.divOpen});//{divOpen : !this.state.divOpen}
 		return (
 			<li className={divClass} onClick={this.handleClick(path)} data-path={path}>
-				<div className="submenu-title" style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path)}>{text}</div>
+				<div className="submenu-title" style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, "subFile")}>{text}</div>
 				<ul>
 					{ children }
 				</ul>
