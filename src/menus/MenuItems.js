@@ -4,7 +4,6 @@ import { select, deselect } from '../redux/actions';
 import Item from './Item';
 import SubMenu from './SubMenu';
 import { parsedMenu } from '../redux/actions';
-import '../styles/mystyle.css';
 // import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
 class MyMenuItem extends Component {

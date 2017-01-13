@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 var classNames = require('classnames');
 import Item from './Item';
+import { contextItem } from '../redux/actions';
 
 class SubMenu extends Component {
 	constructor(props) {
@@ -19,12 +20,17 @@ class SubMenu extends Component {
 		// }
 	}
 
+	handleContextMenu = path => (e) => {
+		console.log(path);
+		this.props.dispatch(contextItem(path, "subFile"));
+	}
+
 	render() {
 		const { path, text, children, level } = this.props;
 		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : this.state.divOpen});//{divOpen : !this.state.divOpen}
 		return (
 			<li className={divClass} onClick={this.handleClick(path)} data-path={path}>
-				<div className="submenu-title" style={{"paddingLeft": level*24+24}}>{text}</div>
+				<div className="submenu-title" style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path)}>{text}</div>
 				<ul>
 					{ children }
 				</ul>
@@ -33,4 +39,4 @@ class SubMenu extends Component {
 	}
 }
 
-export default SubMenu;
+export default connect()(SubMenu);

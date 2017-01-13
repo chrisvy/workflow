@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { select, deselect } from '../redux/actions';
 import Item from './Item';
 import SubMenu from './SubMenu';
-import '../styles/menustyle.css';
 
 class MyMenuItem extends Component {
 	constructor(props) {

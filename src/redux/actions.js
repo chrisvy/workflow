@@ -28,8 +28,16 @@ const deleteSearchItem = (index) => ({
 	data: index
 })
 
+const contextItem = (path, contextType) => ({
+	type: 'CONTEXTITEM',
+	data: {
+		path,
+		contextType
+	}
+})
 
-export {parsedMenu, open, select, search, searchResults, deleteSearchItem};
+
+export {parsedMenu, open, select, search, searchResults, deleteSearchItem, contextItem};
 
 
 

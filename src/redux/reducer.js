@@ -2,15 +2,15 @@
 
 const defaultState = {
   menus: [
-    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': []}]},
-    {'回收站': [{'d1':['d1.1','d1.2']}]},
-    'heh'
+    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': [{"二级目录": [{"三级目录": ['工作流']}]}]}]},
+    {'回收站': [{'d1':['d1.1','d1.2']}]}
   ],
 	itemSelected: false,
   selectKey: null,
   search: '',
   searchResults: [],
-  parsedRes: {}
+  parsedRes: {},
+  contextInfo: null
 };
 
 const reducer = (state=defaultState, action) => {
@@ -19,6 +19,7 @@ const reducer = (state=defaultState, action) => {
       return Object.assign({}, {
         ...state,
         parsedRes: action.data,
+        contextInfo: null
       })
     case 'SELECT':
       // if (state.selectKey === action.data) {
@@ -31,13 +32,15 @@ const reducer = (state=defaultState, action) => {
       	return Object.assign({}, {
           ...state,
         	itemSelected: true,
-      		selectKey: action.data
+      		selectKey: action.data,
+          contextInfo: null
         })
       // }
     case 'SEARCH':
       return Object.assign({}, {
         ...state,
         search: action.data,
+        contextInfo: null
       })
     case 'SEARCHRESULTS':
       // const data = action.data.slice(1, action.data.length-1);
@@ -48,6 +51,7 @@ const reducer = (state=defaultState, action) => {
       return Object.assign({}, {
         ...state,
         searchResults: action.data,
+        contextInfo: null
       })
     case 'DELETESEARCHITEM':
       let tmpSearchResults = state.searchResults.slice(0);
@@ -57,6 +61,12 @@ const reducer = (state=defaultState, action) => {
       return Object.assign({}, {
         ...state,
         searchResults: tmpSearchResults,
+        contextInfo: null
+      })
+    case 'CONTEXTITEM':
+      return Object.assign({}, {
+        ...state,
+        contextInfo: action.data,
       })
     default:
       return state

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
 import { Icon } from 'antd';//, Input
 import { search, searchResults, deleteSearchItem } from '../redux/actions';
 // import { search } from '../redux/actions';
 // import 'searchd/dist/searchd.css';//不需要
 // import '../styles/mystyle.css';
+import DisplayContainer from '../utils/DisplayContainer';
 
+@DisplayContainer
 class Search extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
-			searchText: '',
-			searchResultsShow: false
+			searchText: ''
 		}
 	}
 	
@@ -36,7 +37,8 @@ class Search extends Component {
 	}
 
 	handleSearch = (searchVal) => {
-		this.setState({searchResultsShow: true});
+		// this.setState({showFlag: true});
+		this.props.wrapDisplayProps.show();
 		let results = [];
 		const { dispatch, menus, parsedRes } = this.props;
 		// console.log('1 dispatch search', searchVal);
@@ -94,38 +96,12 @@ class Search extends Component {
     // }
   }
 
-  hide = (e) => {
-  	// if (!isMounted()) { return false; }
-
-  	const node = ReactDOM.findDOMNode(this);
-  	const target = e.target || e.srcElement;
-  	const isInside = node.contains(target);
-
-  	if (this.state.searchResultsShow && !isInside) {
-  		this.setState({
-  			searchResultsShow: false
-  		});
-  	}
-  }
-
-  componentDidUpdate = (prevProps, prevState) => {
-  	if(!this.state.searchResultsShow && prevState.searchResultsShow) {
-  		document.removeEventListener('click', this.hide);
-  	}
-
-  	if(this.state.searchResultsShow && !prevState.searchResultsShow) {
-  		document.addEventListener('click', this.hide);
-  	}
-  }
-
-  componentWillUnmount = () => {
-  	document.removeEventListener('click', this.hide);
-  }
+  
 
 	render () {
 		const inputStyle = {margin: '2px 2px 2px 15px', width: '75%'};
 		const searchStyle = {padding: '0 2%'}
-		let { search, searchResults } = this.props;
+		let { search, searchResults, wrapDisplayProps } = this.props;
 		let searchResultClick = this.searchResultClick;
 		return (
 			<div className="search">
@@ -137,7 +113,7 @@ class Search extends Component {
 				</span>
 				<div className="search-results">
 					{
-						this.state.searchResultsShow && ((searchResults.length) ? searchResults.map(function(result, index) {
+						wrapDisplayProps.showFlag && ((searchResults.length) ? searchResults.map(function(result, index) {
 							return <div className="search-result" key={"result"+index} data-key={index} data-path={result.path}>{ result.workflow }<Icon type="close-circle-o" onClick={(index) => searchResultClick(index)}/></div>
 						}) : <div className="search-zero">没有匹配工作流</div>)
 					}

@@ -1,11 +1,3 @@
-.mypopup {
-  position: relative;
-}
-
-.myTopPopup,
-.mySubPopup {
-  display: none;
-}
 
 .ant-input-preSuffix-wrapper {
     position: relative;

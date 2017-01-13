@@ -10,6 +10,14 @@
 	display: block;
 }
 
+.context-item-group{
+	display: none;
+}
+
+.context-item-group-open {
+	display: block;
+}
+
 .context-item {
 	cursor: pointer;
 	line-height: 30px;
