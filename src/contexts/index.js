@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MenuItems from '../menus/MenuItems';
+import MenuItems from '../menus/index';
 import ContextMenu from './ContextMenu';
 import ContextTrigger from './ContextTrigger';
 import HideDisplayContainer from '../utils/HideDisplayContainer';

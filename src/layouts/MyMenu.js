@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import 'antd/dist/antd.css';
 import '../styles/leftNav.css';
 // import MyMenuItem from './MyMenuItem';
 import Search from './Search';
 import Contexts from '../contexts/index';
+import AddFileModal from '../modals/AddFileModal'
 
 class MyMenu extends Component {
   
@@ -31,10 +33,11 @@ class MyMenu extends Component {
             {this.props.children}
           </div>
         </div>
+        <AddFileModal />
       </div>
     );
   }
 
 }
 
-export default MyMenu;
+export default connect()(MyMenu);

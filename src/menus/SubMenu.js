@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 var classNames = require('classnames');
 import Item from './Item';
-import { contextItem } from '../redux/actions';
+import { open, contextItem } from '../redux/actions';
 
 class SubMenu extends Component {
 	constructor(props) {
     super(props);
 
-    this.state = {
-    	divOpen: false,
-    };
+    // this.state = {
+    // 	divOpen: false,
+    // };
   }
 
 	handleClick = path => (e) => {
 		e.stopPropagation();
 		// if (e.target && e.target.matches('div.top-menu-title')) {
-			this.setState({divOpen: !this.state.divOpen});
+			// this.setState({divOpen: !this.state.divOpen});
 		// }
+		this.props.dispatch(open(path));
 	}
 
 	handleContextMenu = path => (e) => {
@@ -25,10 +26,10 @@ class SubMenu extends Component {
 	}
 
 	render() {
-		const { path, text, children, level } = this.props;
-		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : this.state.divOpen});//{divOpen : !this.state.divOpen}
+		const { path, text, children, level, openStatus } = this.props;
+		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : openStatus[path]});//{divOpen : !this.state.divOpen}
 		return (
-			<li className={divClass} onClick={this.handleClick(path)} data-path={path}>
+			<li className={divClass} onClick={this.handleClick(path)} data-path={path} >
 				<div className="submenu-title" style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, "subFile")}>{text}</div>
 				<ul>
 					{ children }
@@ -38,4 +39,9 @@ class SubMenu extends Component {
 	}
 }
 
-export default connect()(SubMenu);
+const mapStateToProps = state => {
+	const { openStatus } = state;
+	return { openStatus };
+}
+
+export default connect(mapStateToProps)(SubMenu);

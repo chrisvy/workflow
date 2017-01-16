@@ -1,6 +1,12 @@
+//------menu-------
 const parsedMenu = (results) => ({
 	type: 'PARSEDMENU',
 	data: results
+})
+
+const changeMenu = (menus) => ({
+	type: 'CHANGEMENU',
+	data: menus
 })
 
 const open = (openKey) => ({
@@ -13,6 +19,7 @@ const select = (selectKey) => ({
 	data: selectKey
 })
 
+//------search-------
 const search = (searchVal) => ({
 	type: 'SEARCH',
 	data: searchVal
@@ -28,6 +35,7 @@ const deleteSearchItem = (index) => ({
 	data: index
 })
 
+//------context-------
 const contextItem = (path, contextType) => ({
 	type: 'CONTEXTITEM',
 	data: {
@@ -41,8 +49,12 @@ const contextOperate = (operate) => ({
 	data: operate
 })
 
+const addFile = (fileName) => ({
+	type: 'ADDFILE',
+	data: fileName
+})
 
-export {parsedMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate};
+export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addFile};
 
 
 
