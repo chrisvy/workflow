@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { select, contextItem } from '../redux/actions';
+import { select, contextItem } from '../actions/actions';
 
 class Level2 extends Component {
 	constructor(props) {
@@ -26,7 +26,7 @@ class Level2 extends Component {
 }
 
 const mapStateToProps = state => {
-	const { itemSelected, selectKey } = state;
+	const { menuReducer: { itemSelected, selectKey } } = state;
 	return { itemSelected, selectKey };
 }
 

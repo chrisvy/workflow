@@ -1,37 +1,29 @@
 import { combineReducers } from 'redux';
 
-const defaultState = {
+const menuDefaultState = {
   menus: [
     {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': [{"二级目录": [{"三级目录": ['工作流']}]}]}]},
     {'回收站': [{'d1':['d1.1','d1.2']}]}
   ],
+  parsedRes: null,
   openStatus: {},
 	itemSelected: false,
-  selectKey: null,
-  search: '',
-  searchResults: [],
-  parsedRes: {},
-  contextInfo: null,
-  contextOperate: '',
-  contextObjectName:''
+  selectKey: null
 };
 
-const reducer = (state=defaultState, action) => {
+const menuReducer = (state=menuDefaultState, action) => {
   switch (action.type) {
-    // case 'PARSEDMENU':
-    //   return Object.assign({}, {
-    //     ...state,
-    //     parsedRes: action.data,
-    //     contextInfo: null,
-    //     contextObjectName: ''
-    //   })
+    case 'PARSEDMENU':
+      return Object.assign({}, {
+        ...state,
+        parsedRes: action.data,
+        contextInfo: null,
+        contextObjectName: ''
+      })
     case 'CHANGEMENU':
       return Object.assign({}, {
         ...state,
-        menus: action.data,
-        contextInfo: null,
-        contextOperate: '',
-        contextObjectName: ''
+        menus: action.data
       })
     case 'SELECT':
       // if (state.selectKey === action.data) {
@@ -45,8 +37,6 @@ const reducer = (state=defaultState, action) => {
           ...state,
         	itemSelected: true,
       		selectKey: action.data,
-          contextInfo: null,
-          contextObjectName:''
         })
       // }
     case 'OPEN':
@@ -55,38 +45,59 @@ const reducer = (state=defaultState, action) => {
           openStatus: {
             ...state.openStatus,
             [action.data]: !state.openStatus[action.data]
-          },
-          contextInfo: null,
-          contextObjectName:''
+          }
         })
+    
+    
+    default:
+      return state
+  }
+}
+
+const searchDefaultState = {
+  search: '',
+  searchResults: []
+};
+
+const searchReducer = (state=searchDefaultState, action) => {
+  switch (action.type) {
     case 'SEARCH':
       return Object.assign({}, {
         ...state,
         search: action.data,
-        contextInfo: null,
-        contextObjectName:''
       })
     case 'SEARCHRESULTS':
       return Object.assign({}, {
         ...state,
-        searchResults: action.data,
-        contextInfo: null,
-        contextObjectName:''
+        searchResults: action.data
       })
     case 'DELETESEARCHITEM':
       let tmpSearchResults = state.searchResults.slice(0);
       tmpSearchResults.splice(action.data,1);
       return Object.assign({}, {
         ...state,
-        searchResults: tmpSearchResults,
-        contextInfo: null,
-        contextObjectName:''
+        searchResults: tmpSearchResults
       })
+    default:
+      return state
+  }
+}
+
+const menuConDefaultState = {
+  contextInfo: null,
+  contextOperate: '',
+  contextObjectName:'',
+  contextButton: false
+};
+
+const menuConReducer = (state=menuConDefaultState, action) => {
+  switch (action.type) {
     case 'CONTEXTITEM':
       return Object.assign({}, {
         ...state,
         contextInfo: action.data,//include path & contextType
-        contextObjectName:''
+        contextObjectName:'',
+        contextButton: true
       })
     case 'CONTEXTOPERATE':
       return Object.assign({}, {
@@ -96,7 +107,8 @@ const reducer = (state=defaultState, action) => {
           contextType: ''
         },
         contextOperate: action.data,
-        contextObjectName:''
+        contextObjectName:'',
+        contextButton: false
       })
     case 'ADDFILE':
       return Object.assign({}, {
@@ -107,6 +119,7 @@ const reducer = (state=defaultState, action) => {
         },
         // contextOperate: action.data,////the operate is still useful
         contextObjectName: action.data,
+        contextButton: true
       })
     default:
       return state
@@ -114,7 +127,10 @@ const reducer = (state=defaultState, action) => {
 }
 
 
-
-// const reducer = combineReducers({});
+const reducer = combineReducers({
+  menuReducer,
+  searchReducer,
+  menuConReducer
+});
 
 export default reducer;

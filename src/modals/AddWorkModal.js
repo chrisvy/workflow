@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
-import { contextItem, addFile } from '../actions/actions';
+import { contextItem, addWorkflow } from '../actions/actions';
 
-class AddFileModal extends Component {
+class AddWorkModal extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class AddFileModal extends Component {
   handleOk = (e) => {
     const newFile = this.refs.input.value;//校验
     console.log('Clicked OK', newFile);
-    this.props.dispatch(addFile(newFile));
+    this.props.dispatch(addWorkflow(newFile));
   }
 
   handleCancel = (e) => {
@@ -33,7 +33,7 @@ class AddFileModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="Add File" visible={ !contextButton && contextOperate === "addFile" }
+        <Modal title="Add File" visible={ !contextButton && contextOperate === "addWorkflow" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
           <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
@@ -45,8 +45,8 @@ class AddFileModal extends Component {
 }
 
 const mapStateToProps = state => {
-  const { menuReducer: { menus }, menuConReducer: { contextInfo, contextOperate, contextButton } } = state;
-  return { menus, contextInfo, contextOperate, contextButton };
+  const { menuConReducer: { contextInfo, contextOperate, contextButton } } = state;
+  return { contextInfo, contextOperate, contextButton };
 }
 
-export default connect(mapStateToProps)(AddFileModal);
+export default connect(mapStateToProps)(AddWorkModal);

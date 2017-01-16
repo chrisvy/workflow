@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 var classNames = require('classnames');
 import Item from './Item';
-import { open, contextItem } from '../redux/actions';
+import { open, contextItem } from '../actions/actions';
 
 class SubMenu extends Component {
 	constructor(props) {
@@ -40,7 +40,7 @@ class SubMenu extends Component {
 }
 
 const mapStateToProps = state => {
-	const { openStatus } = state;
+	const { menuReducer: { openStatus } } = state;
 	return { openStatus };
 }
 

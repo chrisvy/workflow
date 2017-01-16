@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 var classNames = require('classnames');
 import './ContextMenu.css';
-import { contextOperate } from '../redux/actions';
+import { contextOperate } from '../actions/actions';
 
 class ContextMenu extends Component {
 	
@@ -15,8 +15,9 @@ class ContextMenu extends Component {
   }
 
 	render() {
-		const { menuShow, x, y, contextInfo } = this.props;
-		const contextShowClass = classNames("context-menu", {"context-menu-show": menuShow && (contextInfo !== null) });
+		const { menuShow, x, y, contextInfo, contextButton } = this.props;
+		console.log(contextButton);
+		const contextShowClass = classNames("context-menu", {"context-menu-show": menuShow });
 		const style = {left: x, top: y};
 		let contextType;
 		if (contextInfo) {
@@ -53,4 +54,9 @@ class ContextMenu extends Component {
 	}
 }
 
-export default connect()(ContextMenu);
+const mapStateToProps = state => {
+	const { menuConReducer: { contextInfo, contextButton } } = state;
+	return { contextInfo, contextButton };
+}
+
+export default connect(mapStateToProps)(ContextMenu);

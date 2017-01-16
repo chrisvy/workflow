@@ -49,7 +49,7 @@ class Contexts extends Component {
 
 	render() {
 		
-		const { wrapDisplayProps, contextInfo } = this.props;
+		const { wrapDisplayProps } = this.props;
     return (
       <div className="ant-row">
         <ContextTrigger onContextMenu={this.handleContextClick}>
@@ -59,17 +59,12 @@ class Contexts extends Component {
             </ul>
           </div>
         </ContextTrigger>
-        <ContextMenu menuShow={wrapDisplayProps.showFlag} x={this.state.x} y={this.state.y} contextInfo={contextInfo} />
+        <ContextMenu menuShow={wrapDisplayProps.showFlag} x={this.state.x} y={this.state.y} />
       </div>
     );
   }
 
 }
 
-const mapStateToProps = state => {
-	const { contextInfo } = state;
-	return { contextInfo };
-}
-
-export default connect(mapStateToProps)(Contexts);
+export default connect()(Contexts);
 

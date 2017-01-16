@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'antd';//, Input
-import { search, searchResults, deleteSearchItem } from '../redux/actions';
+import { search, searchResults, deleteSearchItem } from '../actions/actions';
 // import { search } from '../redux/actions';
 // import 'searchd/dist/searchd.css';//不需要
 // import '../styles/mystyle.css';
@@ -124,8 +124,8 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { search, menus, parsedRes, searchResults } = state;
-	return { search, menus, parsedRes, searchResults };
+	const { menuReducer: { menus, parsedRes }, searchReducer: { search, searchResults } } = state;
+	return { menus, parsedRes, search, searchResults };
 }
 
 export default connect(mapStateToProps)(Search);

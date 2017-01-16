@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { select, deselect } from '../redux/actions';
 import Item from './Item';
 import SubMenu from './SubMenu';
-import { parsedMenu, changeMenu } from '../redux/actions';
+import { select, deselect, parsedMenu, changeMenu } from '../actions/actions';
 import _ from 'lodash';
 // import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 
@@ -70,7 +69,7 @@ class MyMenuItem extends Component {
 		let results = {"works":{}, "files": {}};
 		const children = this.parseMenus(results, menus, '', 0);
 		this.setState({children});
-		// this.props.dispatch(parsedMenu(results));
+		this.props.dispatch(parsedMenu(results));
 		// console.log('1', results);
 	}
 
@@ -83,6 +82,7 @@ class MyMenuItem extends Component {
 		if (contextObjectName && contextOperate === "addFile") {
 			children = this.menusAddFile(contextInfo.path, contextObjectName, results, menus, '', 0);
 			this.setState({children});
+			this.props.dispatch(parsedMenu(results));
 		}
 		// this.props.dispatch(changeMenu());
 	}
@@ -100,7 +100,7 @@ class MyMenuItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { menus, contextInfo, contextOperate, contextObjectName } = state;
+	const { menuReducer: { menus }, menuConReducer: { contextInfo, contextOperate, contextObjectName } } = state;
 	return { menus, contextInfo, contextOperate, contextObjectName };
 }
 
