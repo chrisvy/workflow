@@ -35,10 +35,10 @@ class ContextMenu extends Component {
 		return (
 			<div className={contextShowClass} style={style}>
 				<div className={classNames("context-item-group", {"context-item-group-open": contextType === "TopFile"})} >
-			    <div className="context-item" onClick={e => this.handleClick("addFile")}>新建目录</div>
+			    <div className="context-item" onClick={e => this.handleClick("addDir")}>新建目录</div>
 			  </div>
 			  <div className={classNames("context-item-group", {"context-item-group-open": contextType === "subFile"})} >
-			    <div className="context-item" onClick={e => this.handleClick("addFile")}>新建目录</div>
+			    <div className="context-item" onClick={e => this.handleClick("addDir")}>新建目录</div>
 			    <div className="context-item" onClick={e => this.handleClick("addWorkflow")}>新建工作流</div>
 			  </div>
 			  <div className={classNames("context-item-group", {"context-item-group-open": contextType === "workflow"})} >

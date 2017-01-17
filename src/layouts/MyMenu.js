@@ -5,7 +5,8 @@ import '../styles/leftNav.css';
 // import MyMenuItem from './MyMenuItem';
 import Search from './Search';
 import Contexts from '../contexts/index';
-import AddFileModal from '../modals/AddFileModal'
+import AddDirModal from '../modals/AddDirModal';
+import AddWorkModal from '../modals/AddWorkModal';
 
 class MyMenu extends Component {
   
@@ -33,7 +34,8 @@ class MyMenu extends Component {
             {this.props.children}
           </div>
         </div>
-        <AddFileModal />
+        <AddDirModal />
+        <AddWorkModal />
       </div>
     );
   }

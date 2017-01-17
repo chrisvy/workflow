@@ -49,12 +49,18 @@ const contextOperate = (operate) => ({
 	data: operate
 })
 
-const addFile = (fileName) => ({
-	type: 'ADDFILE',
-	data: fileName
+const addDir = (dirName) => ({
+	type: 'ADDDIR',
+	data: dirName
 })
 
-export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addFile};
+
+const addWork = (workName) => ({
+	type: 'ADDWORK',
+	data: workName
+})
+
+export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork};
 
 
 

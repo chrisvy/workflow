@@ -110,7 +110,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
         contextObjectName:'',
         contextButton: false
       })
-    case 'ADDFILE':
+    case 'ADDDIR':
       return Object.assign({}, {
         ...state,
         contextInfo: {

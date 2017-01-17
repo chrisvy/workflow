@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "webpack-dev-server --devtool eval --host localhost --port 8080 --progress --colors --content-base build/ --history-api-fallback",
+    "start": "webpack-dev-server --devtool eval --host localhost --port 8080 --progress --colors --hot --inline --content-base build/ --history-api-fallback",
     "build": "webpack"
   },
   "keywords": [],

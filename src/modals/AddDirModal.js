@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
-import { contextItem, addFile } from '../actions/actions';
+import { contextItem, addDir } from '../actions/actions';
 
-class AddFileModal extends Component {
+class AddDirModal extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class AddFileModal extends Component {
   handleOk = (e) => {
     const newFile = this.refs.input.value;//校验
     console.log('Clicked OK', newFile);
-    this.props.dispatch(addFile(newFile));
+    this.props.dispatch(addDir(newFile));
   }
 
   handleCancel = (e) => {
@@ -33,7 +33,7 @@ class AddFileModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="Add File" visible={ !contextButton && contextOperate === "addFile" }
+        <Modal title="Add File" visible={ !contextButton && contextOperate === "addDir" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
           <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
   return { menus, contextInfo, contextOperate, contextButton };
 }
 
-export default connect(mapStateToProps)(AddFileModal);
+export default connect(mapStateToProps)(AddDirModal);

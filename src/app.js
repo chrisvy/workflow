@@ -21,12 +21,12 @@ const createStoreWithMiddleware = compose(
   DevTools.instrument()
 )
 
-// const store = createStore(
-//   reducer,
-//   initialState,
-//   createStoreWithMiddleware
-// )
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  initialState,
+  createStoreWithMiddleware
+)
+// const store = createStore(reducer);
 
 class App extends React.Component {
   constructor(props) {
