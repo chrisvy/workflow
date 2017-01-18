@@ -16,7 +16,7 @@ class ContextMenu extends Component {
 
 	render() {
 		const { menuShow, x, y, contextInfo, contextButton } = this.props;
-		console.log(contextButton);
+		// console.log(contextButton);
 		const contextShowClass = classNames("context-menu", {"context-menu-show": menuShow });
 		const style = {left: x, top: y};
 		let contextType;

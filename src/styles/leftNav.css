@@ -118,6 +118,10 @@
   display: block;
 }
 
+.submenu {
+  line-height: 36px;
+}
+
 .submenu > ul {
   display: none;
 }

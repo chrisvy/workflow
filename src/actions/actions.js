@@ -60,7 +60,21 @@ const addWork = (workName) => ({
 	data: workName
 })
 
-export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork};
+//------cascader-------
+const cascaderText = (path, text) => ({
+	type: 'CASCADERTEXT',
+	data: {
+		path,
+		text
+	}
+})
+
+const cascaderMenu = (path) => ({
+	type: 'CASCADERMENU',
+	data: path
+})
+
+export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork, cascaderMenu};
 
 
 

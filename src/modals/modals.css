@@ -1,21 +1,21 @@
-.my-cascader-menus {
-	font-size: 12px;
-  background: #fff;
-  position: absolute;
-  z-index: 1050;
-  border-radius: 4px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-  width: 99%;
-  margin: 2px 1px;
-  display: none;
+.ant-form-item {
+  margin-bottom: 10px;
 }
 
-.my-cascader-menus-show {
-	display: blcok;
+.ant-tabs-nav .ant-tabs-tab {
+	margin: 0;
 }
 
-.my-radio-group {
-	padding: 7px 0;
-  line-height: 16px;
+.my-checkbox-group>.ant-checkbox-wrapper {
+	margin: 0 8px;
+}
+
+form .ant-input-number {
+  /* margin-top: -1px; */
+  margin: 0 3px;
+	width: 50px;
+}
+
+.ant-tabs-bar {
+  margin-bottom: 10px;
 }

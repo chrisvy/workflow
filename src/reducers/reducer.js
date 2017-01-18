@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { cronmakerReducer } from './cronmakerReducer';
 
 const menuDefaultState = {
   menus: [
@@ -126,11 +127,27 @@ const menuConReducer = (state=menuConDefaultState, action) => {
   }
 }
 
+const cascaderDefaultState = {
+  openPath: ''
+}
+
+const cascaderReducer = (state=cascaderDefaultState, action) => {
+  switch (action.type) {
+    case 'CASCADERMENU':
+      return Object.assign({}, {
+        openPath: action.data
+      })
+    default:
+      return state
+  }
+}
 
 const reducer = combineReducers({
   menuReducer,
   searchReducer,
-  menuConReducer
+  menuConReducer,
+  cascaderReducer,
+  cronmakerReducer
 });
 
 export default reducer;

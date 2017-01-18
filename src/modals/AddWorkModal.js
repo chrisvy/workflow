@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Input } from 'antd';
+import { Row, Col, Modal, Input, Radio } from 'antd';
+const RadioGroup = Radio.Group;
+import Cronmaker from './Cronmaker';
 import Cascader from '../Cascader/index';
 import { contextItem, addWorkflow } from '../actions/actions';
-import './modals.css';
 
 class AddWorkModal extends Component {
 
@@ -11,7 +12,8 @@ class AddWorkModal extends Component {
     super(props);
 
     this.state = {
-      value: ""
+      value: "",
+      radioValue: ""
     }
   }
 
@@ -30,8 +32,15 @@ class AddWorkModal extends Component {
     this.props.dispatch(contextItem(""));
   }
 
-  render() {
+  handleChange = (e) => {
+    console.log("handleChange", e.target.value);
+    this.setState({
+      radioValue: e.target.value
+    });
+  }
 
+  render() {
+    
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
@@ -40,7 +49,7 @@ class AddWorkModal extends Component {
         >
           <form className="ant-form">
             <div className="ant-row ant-form-item">
-              <div className="ant-col-6 ant-form-item-label">
+              <div className="ant-col-4 ant-form-item-label">
                 <label /*htmlFor=""*/>
                   所属目录
                 </label>
@@ -50,7 +59,7 @@ class AddWorkModal extends Component {
               </div>
             </div>
             <div className="ant-row ant-form-item">
-              <div className="ant-col-6 ant-form-item-label">
+              <div className="ant-col-4 ant-form-item-label">
                 <label /*htmlFor=""*/>
                   名称
                 </label>
@@ -60,30 +69,42 @@ class AddWorkModal extends Component {
               </div>
             </div>
             <div className="ant-row ant-form-item">
-              <div className="ant-col-6 ant-form-item-label">
+              <div className="ant-col-4 ant-form-item-label">
                 <label /*htmlFor=""*/>
                   调度类型
                 </label>
               </div>
               <div className="ant-col-18 my-radio-group">
-                <div className="ant-radio-group">
+                {/*<div className="ant-radio-group">
                   <label htmlFor="" className="ant-radio-wrapper">
                     <span className="ant-radio">
                       <span className="ant-radio-inner"></span>
-                      <input type="radio" className="ant-radio-input"/>
+                      <input type="radio" className="ant-radio-input" value="手工调度" checked={this.state.radioValue === "手工调度"} onChange={this.handleChange} />
                     </span>
                     <span>手工调度</span>
                   </label>
                   <label htmlFor="" className="ant-radio-wrapper">
                     <span className="ant-radio">
                       <span className="ant-radio-inner"></span>
-                      <input type="radio" className="ant-radio-input"/>
+                      <input type="radio" className="ant-radio-input" value="自动调度" checked={this.state.radioValue === "自动调度"} onChange={this.handleChange} />
                     </span>
                     <span>自动调度</span>
                   </label>
-                </div>
+                </div> */}
+                <RadioGroup onChange={this.handleChange} value={this.state.radioValue}>
+                  <Radio value="手工调度">手工调度</Radio>
+                  <Radio value="自动调度">自动调度</Radio>
+                </RadioGroup>
               </div>
             </div>
+            {
+              this.state.radioValue === "自动调度" && (
+              <Row>
+                <Col span={18} offset={4}>
+                  <Cronmaker />
+                </Col>
+              </Row>)
+            }
           </form>
         </Modal>
       </div>
