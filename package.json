@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^2.5.3",
+    "cron-parser": "^2.3.0",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.16.6",

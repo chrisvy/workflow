@@ -13,6 +13,7 @@ class SubMenu extends Component {
   }
 
 	handleClick = (path, text) => e => {
+		// console.log(path, text, e);
 		// if (e.target && e.target.matches('div.top-menu-title')) {
 			// this.setState({divOpen: !this.state.divOpen});
 		// }
