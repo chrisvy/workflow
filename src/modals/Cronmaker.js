@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Radio, Checkbox, InputNumber } from 'antd';
-const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
-import { cronTab, cronRadio, cronAddon } from '../actions/cronmakerAction';
+const RadioGroup = Radio.Group;
+const CheckboxGroup = Checkbox.Group;
+import { cronMin, cronHour, cronDay, cronMonth, cronWeek, cronYear } from '../actions/cronmakerAction';
 import './modals.css';
 
 class Cronmaker extends Component {
@@ -12,167 +13,163 @@ class Cronmaker extends Component {
     super(props);
 
     this.state = {
-      tabIndex: 1,
-      radioValue1: "",
-      checkboxVisible1: false,
-      checkNum1: 0,
-      checkboxValue1: {},
-      radioValue2: "",
-      checkboxVisible2: false,
-      checkboxValue2: {},
-      checkNum2: 0,
-      radioValue3: "",
-      checkboxVisible3: false,
-      checkboxValue3: {},
-      checkNum3: 0,
-      radioValue4: "",
-      checkboxVisible4: false,
-      checkboxValue4: {},
-      checkNum4: 0,
+      //-------min-------
+      minRadioValue: "every",
+      minCheckboxVisible: false,
+      minCheckboxValue: [],
+      minStart: 1,
+      minEnd: 2,
+      minBase: 0,
+      minCycle: 1,
+      minData: '',
+      //-------hour-------
+      hourRadioValue: "every",
+      hourCheckboxVisible: false,
+      hourCheckboxValue: [],
+      hourStart: 1,
+      hourEnd: 2,
+      hourBase: 0,
+      hourCycle: 1,
+      hourData: '',
+      //-------day-------
+      dayRadioValue: "every",
+      dayCheckboxVisible: false,
+      dayCheckboxValue: [],
+      dayStart: 1,
+      dayEnd: 2,
+      dayBase: 0,
+      dayCycle: 1,
+      dayNearWork: 1,//每月最近的那个工作日
+      dayData: '',
+      //-------month-------
+      monthRadioValue: "every",
+      monthCheckboxVisible: false,
+      monthCheckboxValue: [],
+      monthStart: 1,
+      monthEnd: 2,
+      monthBase: 0,
+      monthCycle: 1,
+      monthData: '',
+      //-------week-------
+      weekRadioValue: "every",
+      weekCheckboxVisible: false,
+      weekCheckboxValue: [],
+      weekStart: 1,
+      weekEnd: 2,
+      weekBase: 0,
+      weekCycle: 1,
+      weekNth: 1,
+      weekNDay: 1,//第几周的星期几
+      weekN: 1,//本月的最后一个星期几
+      weekData: '',
+      //-------year-------
+      yearRadioValue: "every",
+      yearCheckboxVisible: false,
+      yearCheckboxValue: [],
+      yearStart: 1,
+      yearEnd: 2,
+      yearBase: 0,
+      yearCycle: 1,
+      yearData: '',
     }
   }
 
   handleTabsChange = (key) => {
-    // this.setState({
-    //   tabIndex: e.target.value //wrong
-    // });
-    console.log(key);
-    this.props.dispatch(cronTab(key));
+    console.log("handleTabsChange", key);
   }
 
-  handleRadioChange1 = (e) => {
+  handleCheckboxChange = (type) => (checkValues) => {
     this.setState({
-      radioValue1: e.target.value
-    });
-    if (e.target.value === 4) {
-      this.setState({
-        checkboxVisible1: true
-      });
-    } else {
-      this.setState({
-        checkboxVisible1: false
-      });
-    }
-    this.props.dispatch(cronRadio(e.target.value));
+      ...this.state,
+      [type + "CheckboxValue"]: checkValues
+    })
   }
 
-  handleCheckboxChange1 = (e) => {
-    //e.target.checked
-    if (e.target.checked) {
-      checkboxValue1[e.target.value] = false;
-    } else {
-      checkboxValue1[e.target.value] = true;
-    }
-  }
-
-  handleRadioChange2 = (e) => {
+  handleRadioChange = (type) => (e) => {
     this.setState({
-      radioValue2: e.target.value
+      [type + "RadioValue"]: e.target.value
     });
-    if (e.target.value === 4) {
-      this.setState({
-        checkboxVisible2: true
-      });
-    } else {
-      this.setState({
-        checkboxVisible2: false
-      });
-    }
-  }
-
-  handleCheckboxChange2 = (e) => {
-    //e.target.checked
-    if (e.target.checked) {
-      checkboxValue2[e.target.value] = false;
-    } else {
-      checkboxValue2[e.target.value] = true;
-    }
-  }
-
-  handleRadioChange3 = (e) => {
-    this.setState({
-      radioValue3: e.target.value
-    });
-    if (e.target.value === 4) {
-      this.setState({
-        checkboxVisible3: true
-      });
-    } else {
-      this.setState({
-        checkboxVisible3: false
-      });
-    }
-  }
-
-  handleCheckboxChange3 = (e) => {
-    //e.target.checked
-    if (e.target.checked) {
-      checkboxValue3[e.target.value] = false;
-    } else {
-      checkboxValue3[e.target.value] = true;
-    }
-  }
-
-  handleRadioChange4 = (e) => {
-    this.setState({
-      radioValue4: e.target.value
-    });
-    if (e.target.value === 4) {
-      this.setState({
-        checkboxVisible4: true
-      });
-    } else {
-      this.setState({
-        checkboxVisible4: false
-      });
-    }
-  }
-
-  handleCheckboxChange4 = (e) => {
-    //e.target.checked
-    if (e.target.checked) {
-      checkboxValue4[e.target.value] = false;
-    } else {
-      checkboxValue4[e.target.value] = true;
+    switch (e.target.value) {
+      case "every":
+        return this.setState({
+          [type + "Data"]: '*',
+          [type + "CheckboxVisible"]: false
+        })
+      case "unspecify":
+        return this.setState({
+          [type + "Data"]: '?',
+          [type + "CheckboxVisible"]: false
+        })
+      case "fromTo":
+        return this.setState({
+          [type + "Data"]: this.state[type + "Start"] + '-' + this.state[type + "End"],
+          [type + "CheckboxVisible"]: false
+        })
+      case "cycle":
+        return this.setState({
+          [type + "Data"]: this.state[type + "Base"] + '/' + this.state[type + "Cycle"],
+          [type + "CheckboxVisible"]: false
+        })
+      case "workday"://每月最近的那个工作日
+        return this.setState({
+          [type + "Data"]: this.state.dayNearWork + 'W',
+          [type + "CheckboxVisible"]: false
+        })
+      case "lastday":
+        return this.setState({
+          [type + "Data"]: 'L',
+          [type + "CheckboxVisible"]: false
+        })
+      case "specify":
+        const checkboxValue = this.state[type + "CheckboxValue"];
+        if (checkboxValue.length) {
+          return this.setState({
+            [type + "Data"]: checkboxValue.join(','),
+            [type + "CheckboxVisible"]: true
+          })
+        } else {
+          return this.setState({
+            [type + "Data"]: '?',
+            [type + "CheckboxVisible"]: true
+          })
+        }
+      case "weekOfMonth"://本月的最后一个星期几
+        return this.setState({
+          [type + "Data"]: this.state.weekN + 'L',
+          [type + "CheckboxVisible"]: false
+        })
+      case "yearUnspecify":
+        return this.setState({
+          [type + "Data"]: '',
+          [type + "CheckboxVisible"]: false
+        })
+      case "weekCycle"://第几周的星期几
+        return this.setState({
+          [type + "Data"]: this.state.weekNth + '#' + this.state.weekNDay,
+          [type + "CheckboxVisible"]: false
+        })
+      default:
+        return
     }
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const timeNum = 5;
-    const { currTab, minute, hour, day, week, month, year } = nextProps;
-    console.log(currTab, minute, hour, day, week, month, year);
-    //
-    const dateObj = new Date();
-    let dateTime = dateObj.getTime();//毫秒数
-    let dateArr = [];
-    if (currTab === "minute") {
-      if (minute.cronRadio === "every") {
-        for (let index=0; index<timeNum; index++) {
-          dateArr.push(dateTime);
-          dateTime += 1000;
-        }
-      } else if (minute.cronRadio === "fromTo") {
-        const oriMins = dateObj.getMinutes();
-        if (this.refs.minStart <= oriMins && oriMins <= this.refs.minEnd) {
-          let pureTime = dateTime - oriMins*60*1000;
-          for (let index=0; index<timeNum; index++) {
-            dateArr.push(dateTime);
-            dateTime += 1000;
-          }
-        } else if (this.refs.minStart <= dateTime && dateTime <= this.refs.minEnd) {
-          for (let index=0; index<timeNum; index++) {
-            dateArr.push(dateTime);
-            dateTime += 1000;
-            if (this.refs.minStart <= dateTime && dateTime <= this.refs.minEnd) {
-              
-            }
-          }
-        }
-      }
-    }
+    // const timeNum = 5;
+    // const { currTab, minute, hour, day, week, month, year } = nextProps;
+    // console.log(currTab, minute, hour, day, week, month, year);
+    // //
+    // const dateObj = new Date();
+    // let dateTime = dateObj.getTime();//毫秒数
+  }
+
+  handleNumChange = (type) => (value) => {
     this.setState({
-      cronResults: dateArr
+      [type]: value
     });
+  }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    // console.log("nextState", nextState);
   }
 
   render() {
@@ -193,116 +190,84 @@ class Cronmaker extends Component {
       lineHeight: '30px',
     };
 
-    const handleCheckboxChange1 = this.handleCheckboxChange1;
-    const handleCheckboxChange2 = this.handleCheckboxChange2;
-
     return (
       <div className="my-cronmaker">
         <Tabs defaultActiveKey="minute" onChange={this.handleTabsChange}>
           <TabPane tab="分钟" key="minute">
-            <RadioGroup onChange={this.handleRadioChange1} value={this.state.radioValue1}>
+            <RadioGroup onChange={this.handleRadioChange("min")} value={this.state.minRadioValue}>
               <Radio style={radioStyle} value="every">每分钟</Radio>
-              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={0} max={59} ref="minStart" />-<InputNumber min={0} max={59} ref="minEnd" />分钟</Radio>
-              <Radio style={radioStyle} value="cycle">从<InputNumber min={0} max={59} ref="minBase" />分钟开始，每<InputNumber min={1} ref="minCycle" />分钟执行一次</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={0} max={59} onChange={this.handleNumChange("minStart")} defaultValue={1} />-<InputNumber min={0} max={59} onChange={this.handleNumChange("minEnd")} defaultValue={2} />分钟</Radio>
+              <Radio style={radioStyle} value="cycle">从<InputNumber min={0} max={59} onChange={this.handleNumChange("minBase")} defaultValue={0} />分钟开始，每<InputNumber min={1} onChange={this.handleNumChange("minCycle")} defaultValue={1} />分钟执行一次</Radio>
               <Radio style={radioStyle} value="specify">
                 指定
               </Radio>
             </RadioGroup>
             {
-              this.state.checkboxVisible1 && <div className="my-checkbox-group">
-                {
-                  minsArr.map(function(item, index) {
-                    return <Checkbox key={item} onChange={handleCheckboxChange1} >{item}</Checkbox>
-                  })
-                }
-              </div>
+              this.state.minCheckboxVisible && <CheckboxGroup options={minsArr} onChange={this.handleCheckboxChange("min")} value={this.state.minCheckboxValue} />
             }
           </TabPane>
           <TabPane tab="小时" key="hour">
-            <RadioGroup onChange={this.handleRadioChange2} value={this.state.radioValue2}>
-              <Radio style={radioStyle} value={1}>每小时</Radio>
-              <Radio style={radioStyle} value={2}>周期 从<InputNumber min={0} max={23} />-<InputNumber min={0} max={23} />小时</Radio>
-              <Radio style={radioStyle} value={3}>从<InputNumber min={0} max={23} />小时开始，每<InputNumber min={1} />小时执行一次</Radio>
-              <Radio style={radioStyle} value={4}>
+            <RadioGroup onChange={this.handleRadioChange("hour")} value={this.state.hourRadioValue}>
+              <Radio style={radioStyle} value="every">每小时</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={0} max={23} onChange={this.handleNumChange("hourStart")} defaultValue={1} />-<InputNumber min={0} max={23} onChange={this.handleNumChange("hourEnd")} defaultValue={2} />小时</Radio>
+              <Radio style={radioStyle} value="cycle">从<InputNumber min={0} max={23} onChange={this.handleNumChange("hourBase")} defaultValue={0} />小时开始，每<InputNumber min={1} onChange={this.handleNumChange("hourCycle")} defaultValue={1} />小时执行一次</Radio>
+              <Radio style={radioStyle} value="specify">
                 指定
               </Radio>
             </RadioGroup>
             {
-              this.state.checkboxVisible2 && <div className="my-checkbox-group">
-                {
-                  minsArr.slice(0,24).map(function(item, index) {
-                    return <Checkbox key={item} onChange={handleCheckboxChange2} >{item}</Checkbox>
-                  })
-                }
-              </div>
+              this.state.hourCheckboxVisible && <CheckboxGroup options={minsArr.slice(0,24)} onChange={this.handleCheckboxChange("hour")} value={this.state.hourCheckboxValue} />
             }
           </TabPane>
           <TabPane tab="日" key="day">
-            <RadioGroup onChange={this.handleRadioChange3} value={this.state.radioValue3}>
-              <Radio style={radioStyle} value={1}>每日</Radio>
-              <Radio style={radioStyle} value={2}>不指定</Radio>
-              <Radio style={radioStyle} value={3}>周期 从<InputNumber min={1} max={31} />-<InputNumber min={1} max={31} />小时</Radio>
-              <Radio style={radioStyle} value={4}>从<InputNumber min={1} max={31} />日开始，每<InputNumber min={1} />天执行一次</Radio>
-              <Radio style={radioStyle} value={5}>每月<InputNumber min={1} max={31} />号最近的那个工作日</Radio>
-              <Radio style={radioStyle} value={6}>本月最后一天</Radio>
-              <Radio style={radioStyle} value={7}>
+            <RadioGroup onChange={this.handleRadioChange("day")} value={this.state.dayRadioValue}>
+              <Radio style={radioStyle} value="every">每日</Radio>
+              <Radio style={radioStyle} value="unspecify">不指定</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={1} max={31} onChange={this.handleNumChange("dayStart")} defaultValue={1} />-<InputNumber min={1} max={31} onChange={this.handleNumChange("dayEnd")} defaultValue={2} />小时</Radio>
+              <Radio style={radioStyle} value="cycle">从<InputNumber min={1} max={31} onChange={this.handleNumChange("dayBase")} defaultValue={0} />日开始，每<InputNumber min={1} onChange={this.handleNumChange("dayCycle")} defaultValue={1} />天执行一次</Radio>
+              <Radio style={radioStyle} value="workday">每月<InputNumber min={1} max={31} onChange={this.handleNumChange("workday")} defaultValue={1} />号最近的那个工作日</Radio>
+              <Radio style={radioStyle} value="lastday">本月最后一天</Radio>
+              <Radio style={radioStyle} value="specify">
                 指定
               </Radio>
             </RadioGroup>
             {
-              this.state.checkboxVisible3 && <div className="my-checkbox-group">
-                {
-                  minsArr.slice(1,33).map(function(item, index) {
-                    return <Checkbox key={item} onChange={handleCheckboxChange3} >{item}</Checkbox>
-                  })
-                }
-              </div>
+              this.state.dayCheckboxVisible && <CheckboxGroup options={minsArr.slice(1,32)} onChange={this.handleCheckboxChange("day")} value={this.state.dayCheckboxValue} />
             }
           </TabPane>
           <TabPane tab="月" key="month">
-            <RadioGroup onChange={this.handleRadioChange4} value={this.state.radioValue4}>
-              <Radio style={radioStyle} value={1}>每月</Radio>
-              <Radio style={radioStyle} value={2}>周期 从<InputNumber min={1} max={12} />-<InputNumber min={1} max={12} />月</Radio>
-              <Radio style={radioStyle} value={3}>从<InputNumber min={1} max={12} />月开始，每<InputNumber min={1} />月执行一次</Radio>
-              <Radio style={radioStyle} value={4}>
+            <RadioGroup onChange={this.handleRadioChange("month")} value={this.state.monthRadioValue}>
+              <Radio style={radioStyle} value="every">每月</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={1} max={12} onChange={this.handleNumChange("monthStart")} defaultValue={1} />-<InputNumber min={1} max={12} onChange={this.handleNumChange("monthEnd")} defaultValue={2} />月</Radio>
+              <Radio style={radioStyle} value="cycle">从<InputNumber min={1} max={12} onChange={this.handleNumChange("monthBase")} defaultValue={0} />月开始，每<InputNumber min={1} onChange={this.handleNumChange("monthCycle")} defaultValue={1} />月执行一次</Radio>
+              <Radio style={radioStyle} value="specify">
                 指定
               </Radio>
             </RadioGroup>
             {
-              this.state.checkboxVisible4 && <div className="my-checkbox-group">
-                {
-                  minsArr.slice(1,14).map(function(item, index) {
-                    return <Checkbox key={item} onChange={handleCheckboxChange4} >{item}</Checkbox>
-                  })
-                }
-              </div>
+              this.state.monthCheckboxVisible && <CheckboxGroup options={minsArr.slice(1,13)} onChange={this.handleCheckboxChange("month")} value={this.state.monthCheckboxValue} />
             }
           </TabPane>
           <TabPane tab="周" key="week">
-            <RadioGroup onChange={this.handleRadioChange4} value={this.state.radioValue4}>
-              <Radio style={radioStyle} value={1}>每周</Radio>
-              <Radio style={radioStyle} value={2}>不指定</Radio>
-              <Radio style={radioStyle} value={3}>周期 从星期<InputNumber min={1} max={31} />-<InputNumber min={1} max={31} /></Radio>
-              <Radio style={radioStyle} value={4}>第<InputNumber min={1} max={4} />周的星期<InputNumber min={1} max={7} /></Radio>
-              <Radio style={radioStyle} value={5}>本月最后一个星期<InputNumber min={1} max={7} /></Radio>
-              <Radio style={radioStyle} value={6}>
+            <RadioGroup onChange={this.handleRadioChange("week")} value={this.state.weekRadioValue}>
+              <Radio style={radioStyle} value="every">每周</Radio>
+              <Radio style={radioStyle} value="unspecify">不指定</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从星期<InputNumber min={1} max={31} onChange={this.handleNumChange("weekStart")} defaultValue={1} />-<InputNumber min={1} max={31} onChange={this.handleNumChange("weekEnd")} defaultValue={2} /></Radio>
+              <Radio style={radioStyle} value="weekCycle">第<InputNumber min={1} max={4} onChange={this.handleNumChange("weekNth")} defaultValue={1} />周的星期<InputNumber min={1} max={7} onChange={this.handleNumChange("weekNDay")} defaultValue={1} /></Radio>
+              <Radio style={radioStyle} value="weekOfMonth">本月最后一个星期<InputNumber min={1} max={7} onChange={this.handleNumChange("weekn")} defaultValue={1} /></Radio>
+              <Radio style={radioStyle} value="specify">
                 指定
               </Radio>
             </RadioGroup>
             {
-              this.state.checkboxVisible4 && <div className="my-checkbox-group">
-                {
-                  minsArr.slice(1,7).map(function(item, index) {
-                    return <Checkbox key={item} onChange={handleCheckboxChange4} >{item}</Checkbox>
-                  })
-                }
-              </div>
+              this.state.weekCheckboxVisible && <CheckboxGroup options={minsArr.slice(1,8)} onChange={this.handleCheckboxChange("week")} value={this.state.weekCheckboxValue} />
             }
           </TabPane>
           <TabPane tab="年" key="year">
-            <RadioGroup onChange={this.handleRadioChange4} value={this.state.radioValue4}>
-              <Radio style={radioStyle} value={1}>每年</Radio>
-              <Radio style={radioStyle} value={2}>周期 从<InputNumber min={2017} max={3017} />-<InputNumber min={2017} max={3017} /></Radio>
+            <RadioGroup onChange={this.handleRadioChange("year")} value={this.state.yearRadioValue}>
+              <Radio style={radioStyle} value="yearUnspecify">不指定</Radio>
+              <Radio style={radioStyle} value="every">每年</Radio>
+              <Radio style={radioStyle} value="fromTo">周期 从<InputNumber min={2017} max={3017} onChange={this.handleNumChange("yearStart")} defaultValue={2017} />-<InputNumber min={2017} max={3017} onChange={this.handleNumChange("yearEnd")} defaultValue={2018} /></Radio>
             </RadioGroup>
           </TabPane>
         </Tabs>

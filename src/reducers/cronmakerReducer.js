@@ -1,59 +1,43 @@
 const cronDefaultState = {
-	currTab: 'minute',
-	minute: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	},
-	hour: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	},
-	day: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	},
-	month: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	},
-	week: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	},
-	year: {
-		cronTab: '',
-		cronRadio: '',
-		cronAddon: ''
-	}
+	min: '',
+	hour: '',
+	day: '',
+	month: '',
+	week: '',
+	year: '',
 }
 
 const cronmakerReducer = (state=cronDefaultState, action) => {
   switch (action.type) {
-    case 'CRONTAB':
+    case 'CRONMIN':
       return Object.assign({}, {
         ...state,
-        currTab: action.data
+        min: action.data
       })
-    case 'CRONRADIO':
+    case 'CRONHOUR':
       return Object.assign({}, {
         ...state,
-        [state.currTab]: {
-        	...state[state.currTab],
-        	cronRadio: action.data
-        }
+        hour: action.data
       })
-    case 'CRONRADDON':
+    case 'CRONDAY':
       return Object.assign({}, {
         ...state,
-        [state.currTab]: {
-        	...state[state.currTab],
-        	cronAddon: action.data
-        }
+        day: action.data
+      })
+    case 'CRONMONTH':
+      return Object.assign({}, {
+        ...state,
+        day: action.data
+      })
+    case 'CRONWEEK':
+      return Object.assign({}, {
+        ...state,
+        day: action.data
+      })
+    case 'CRONYEAR':
+      return Object.assign({}, {
+        ...state,
+        day: action.data
       })
 		default:
       return state
