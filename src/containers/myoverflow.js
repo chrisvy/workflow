@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
+import EditArea from './EditArea';
 
 const Myoverflow = React.createClass({
   getInitialState() {
@@ -49,7 +50,14 @@ const Myoverflow = React.createClass({
         type="editable-card"
         onEdit={this.onEdit}
       >
-        {this.state.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time}  状态：{pane.state}</TabPane>)}
+        {
+          this.state.panes.map((pane, index) => (
+            <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
+              <EditArea tabIndex={index}/>
+            </TabPane>
+            )
+          )
+        }
       </Tabs>
     );
   },

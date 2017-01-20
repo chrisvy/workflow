@@ -1,58 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
-const TabPane = Tabs.TabPane;
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import Square from './square';
+import Knight from './Knight';
 
-const Myoverflow = React.createClass({
-  getInitialState() {
-    this.newTabIndex = 0;
-    const panes = [
-      { title: 'text_workflow', lastModified: {user: "admin", time: "2016-10-31 15:27:59"}, state: "dispatching", key: '1' },
-      { title: 'text_phone', lastModified: {user: "chris", time: "2016-12-31 14:23:28"}, key: '2' },
-    ];
-    return {
-      activeKey: panes[0].key,
-      panes,
-    };
-  },
-  onChange(activeKey) {
-    this.setState({ activeKey });
-  },
-  onEdit(targetKey, action) {
-    this[action](targetKey);
-  },
-  add() {
-    const panes = this.state.panes;
-    const activeKey = `newTab${this.newTabIndex++}`;
-    panes.push({ title: 'New Tab', lastModified: {}, state: "dispatching", key: activeKey });
-    this.setState({ panes, activeKey });
-  },
-  remove(targetKey) {
-    let activeKey = this.state.activeKey;
-    let lastIndex;
-    this.state.panes.forEach((pane, i) => {
-      if (pane.key === targetKey) {
-        lastIndex = i - 1;
-      }
-    });
-    const panes = this.state.panes.filter(pane => pane.key !== targetKey);
-    if (lastIndex >= 0 && activeKey === targetKey) {
-      activeKey = panes[lastIndex].key;
+class EditArea extends Component {
+
+  static defaultProps = {
+    knightPosition: [0, 0]
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showFlag: false
     }
-    this.setState({ panes, activeKey });
-  },
-  render() {
-    return (
-      <Tabs
-        onChange={this.onChange}
-        activeKey={this.state.activeKey}
-        type="editable-card"
-        onEdit={this.onEdit}
-      >
-        {this.state.panes.map(pane => <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time}  状态：{pane.state}</TabPane>)}
-      </Tabs>
-    );
-  },
-});
+  }
 
-export default Myoverflow
+  renderSquare = (i) => {
+    const tabIndex = this.props.tabIndex;
+    const x = i % 8;
+    const y = Math.floor(i / 8);
+    const black = (x + y) % 2 === 1;
+
+    const knightX = this.props.knightPosition[0];
+    const knightY = this.props.knightPosition[1];
+    const piece = (x === knightX && y === knightY) ?
+      <Knight /> :
+      null;
+    return (
+      <div key={tabIndex + '' + i}
+           style={{ width: '12.5%', height: '12.5%' }}>
+        <Square /*black={black}*/>
+          {piece}
+        </Square>
+      </div>
+    )
+  }
+  
+  render() {
+    var squares = [];
+    for (let i = 0; i < 64; i++) {
+      squares.push(this.renderSquare(i));
+    }
+    return (
+      <div style={{
+        width: 300,
+        height: 300,
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: 10,
+      }}>
+        {squares}
+      </div>
+    )
+  }
+}
+
+export default DragDropContext(HTML5Backend)(EditArea);
