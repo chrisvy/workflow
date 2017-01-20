@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
-import EditArea from './EditArea';
+import Board from './Board';
 
 const Myoverflow = React.createClass({
   getInitialState() {
@@ -43,6 +43,7 @@ const Myoverflow = React.createClass({
     this.setState({ panes, activeKey });
   },
   render() {
+    const pane = this.state.panes[0];
     return (
       <Tabs
         onChange={this.onChange}
@@ -51,12 +52,9 @@ const Myoverflow = React.createClass({
         onEdit={this.onEdit}
       >
         {
-          this.state.panes.map((pane, index) => (
-            <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
-              <EditArea tabIndex={index}/>
-            </TabPane>
-            )
-          )
+          <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
+            <Board />
+          </TabPane>
         }
       </Tabs>
     );

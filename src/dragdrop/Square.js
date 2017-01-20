@@ -7,18 +7,13 @@ var Square = React.createClass({
   },
 
   render: function () {
-    let black = this.props.black;
-    let fill = black ? 'black' : 'white';
-    let stroke = black ? 'white' : 'black';
-
+    const { handleSquareClick } = this.props;
     return (
     	<div style={{
-        backgroundColor: fill,
-        color: stroke,
         width: '100%',
         height: '100%',
         border: 'solid 1px #eee'
-      }}>
+      }} onClick={handleSquareClick}>
         {this.props.children}
       </div>
     )
