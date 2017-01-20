@@ -55,7 +55,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={MyMenu} >
         <IndexRoute component={App} />
-        <Route path="myoverflow" component={Tabs} />
+        <Route path="myworkflow" component={Tabs} />
       </Route>
     </Router>
     {/*<DevTools />*/}
