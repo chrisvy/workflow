@@ -1,5 +1,5 @@
-import React from 'react';
-import ItemTypes from './constants';
+import React, { Component, PropTypes } from 'react';
+import ItemTypes from './Constants';
 import { DragSource } from 'react-dnd';
 
 let knightSource = {
@@ -11,24 +11,31 @@ let knightSource = {
 function collect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
   }
 }
 
-let Knight = React.createClass({
-
-  render: function () {
-		let connectDragSource = this.props.connectDragSource;
-	  let isDragging = this.props.isDragging;
-    return connectDragSource(
-    	<div style={{
-        opacity: isDragging ? 0.5 : 1,
-        fontSize: 25,
-        fontWeight: 'bold',
-        cursor: 'move'
-      }}>♘</div>
-    )
+@DragSource(ItemTypes.KNIGHT, knightSource, collect)
+export default class Knight extends Component {
+  static propTypes = {
+    connectDragSource: PropTypes.func.isRequired,
+    connectDragPreview: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
   }
-});
 
-export default DragSource(ItemTypes.KNIGHT, knightSource, collect)(Knight);
+  render() {
+    const { connectDragSource, isDragging } = this.props;
+    return connectDragSource(
+      <div style={{
+        fontSize: 40,
+        fontWeight: 'bold',
+        cursor: 'move',
+        height: '100%',
+        opacity: isDragging ? 0.5 : 1
+      }}>
+        ♘
+      </div>
+    );
+  }
+}

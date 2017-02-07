@@ -1,23 +1,25 @@
-import React from 'react';
-let PropTypes = React.PropTypes;
+import React, { Component, PropTypes } from 'react';
 
-var Square = React.createClass({
-  propTypes: {
-    black: PropTypes.bool
-  },
+export default class Square extends Component {
+  static propTypes = {
+    black: PropTypes.bool,
+    children: PropTypes.node
+  }
 
-  render: function () {
-    const { handleSquareClick } = this.props;
+  render() {
+    const { black } = this.props;
+    const backgroundColor = black ? 'black' : 'white';
+    const color = black ? 'white' : 'black';
+
     return (
-    	<div style={{
+      <div style={{
+        color,
+        backgroundColor,
         width: '100%',
-        height: '100%',
-        border: 'solid 1px #eee'
-      }} onClick={handleSquareClick}>
+        height: '100%'
+      }}>
         {this.props.children}
       </div>
-    )
+    );
   }
-});
-
-export default Square;
+}

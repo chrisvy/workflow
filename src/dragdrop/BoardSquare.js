@@ -1,7 +1,7 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Square = require('./Square');
+import React, { Component, PropTypes } from 'react';
+import Square from './Square';
 import ItemTypes from './Constants';
+import { canMoveKnight, moveKnight } from './MoveAct';
 import { DropTarget } from 'react-dnd';
 
 
@@ -18,18 +18,34 @@ function collect(connect, monitor) {
   };
 }
 
-var BoardSquare = React.createClass({
-  propTypes: {
+@DropTarget(ItemTypes.KNIGHT, squareTarget, collect)
+export default class BoardSquare extends Component {
+  static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-    isOver: PropTypes.bool.isRequired
-  },
+    isOver: PropTypes.bool.isRequired,
+    // canDrop: PropTypes.bool.isRequired,
+    connectDropTarget: PropTypes.func.isRequired,
+    children: PropTypes.node
+  }
 
-  render: function () {
-    const x = this.props.x;
-    const y = this.props.y;
-    const connectDropTarget = this.props.connectDropTarget;
-    const isOver = this.props.isOver;
+  renderOverlay(color) {
+    return (
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100%',
+        width: '100%',
+        zIndex: 1,
+        opacity: 0.5,
+        backgroundColor: color,
+      }} />
+    );
+  }
+
+  render() {
+    const { x, y, connectDropTarget, isOver, children } = this.props;
 
     return connectDropTarget(
       <div style={{
@@ -38,23 +54,10 @@ var BoardSquare = React.createClass({
         height: '100%'
       }}>
         <Square>
-          {this.props.children}
+          {children}
         </Square>
-        {isOver &&
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 1,
-            opacity: 0.5,
-            backgroundColor: 'yellow',
-          }} />
-        }
+        {isOver && this.renderOverlay('green')}
       </div>
-    )
+    );
   }
-});
-
-module.exports = BoardSquare;
+}
