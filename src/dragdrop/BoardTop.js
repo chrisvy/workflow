@@ -13,6 +13,7 @@ export default class BoardTop extends Component {
   }
 
   handleChange(position) {
+  	console.log('observe', position);
     const nextState = { position };
     if (this.state) {
       this.setState(nextState);
@@ -28,11 +29,7 @@ export default class BoardTop extends Component {
   render() {
     const { position } = this.state;
     return (
-      <div style={{
-        width: 500,
-        height: 500,
-        border: '1px solid gray'
-      }}>
+      <div>
         <Board position={position} />
       </div>
     );

@@ -56,14 +56,18 @@ class Board extends Component {
       squares.push(this.renderSquare(i));
     }
     return (
-      <div style={{
-        width: 300,
-        height: 300,
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: 10,
-      }}>
-        {squares}
+      <div>
+        <Knight />
+        <div style={{
+          width: 300,
+          height: 300,
+          display: 'flex',
+          flexWrap: 'wrap',
+          margin: 10,
+          border: '1px solid gray'
+        }}>
+          {squares}
+        </div>
       </div>
     )
   }

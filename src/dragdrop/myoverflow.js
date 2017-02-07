@@ -3,7 +3,6 @@ import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
 import BoardTop from './BoardTop';
-import Knight from './Knight';
 
 const Myoverflow = React.createClass({
   getInitialState() {
@@ -54,9 +53,6 @@ const Myoverflow = React.createClass({
       >
         {
           <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
-            <div>
-              <p style={{fontSize: 40, display: 'inline'}} draggable={true}>♘</p>
-            </div>
             <BoardTop />
           </TabPane>
         }
