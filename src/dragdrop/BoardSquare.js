@@ -7,8 +7,8 @@ import { One, Two } from './DragElements';
 
 const squareTarget = {
   drop: function (props, monitor) {
-    console.log('drop ', monitor.getItemType());
-    props.handleDrop(monitor.getItemType(), props.x, props.y);
+    console.log('drop ', monitor.getItem().text, props.x, props.y);
+    props.handleDrop(monitor.getItem().text, props.x, props.y);
     props.onDrop(monitor.getItemType());
     moveKnight(props.x, props.y);
   }
@@ -53,7 +53,7 @@ class TargetBox extends Component {
   // }
 
   render() {
-    const { x, y, ele, connectDropTarget, isOver, lastDroppedText, handleDragMove } = this.props;
+    const { x, y, text, connectDropTarget, isOver, lastDroppedText, handleDrag, knightX, knightY } = this.props;
     // console.log('draggingText ', lastDroppedText , x, y, knightX, knightY);
     return connectDropTarget(
       <div style={{
@@ -61,7 +61,7 @@ class TargetBox extends Component {
         width: '100%',
         height: '100%'
       }}>
-        <Square lastDroppedText={ele} handleDragMove={handleDragMove} />
+        <Square text={text} knightX={knightX} knightY={knightY} handleDrag={handleDrag} />
         {isOver && this.renderOverlay('green')}
       </div>
     );

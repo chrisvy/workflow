@@ -13,12 +13,12 @@ let oneSource = {
   beginDrag: function (props) {
     console.log('begin drag');
     if (props.title === "true") {
-      console.log("true", props.lastDroppedText);
+      console.log("add", props.text);
     } else {
-      props.handleDragMove(props.lastDroppedText);
+      console.log("move", props.text);
     }
-    props.handleDrag(props.lastDroppedText);
-    return {};
+    props.handleDrag(props.text);
+    return {text: props.text};
   },
 
   endDrag: function (props) {
@@ -27,7 +27,7 @@ let oneSource = {
   }
 }
 
-@DragSource(props => props.lastDroppedText, oneSource, collect)
+@DragSource(props => props.text.split('-')[0], oneSource, collect)
 export class One extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
@@ -35,7 +35,7 @@ export class One extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, lastDroppedText } = this.props;
+    const { connectDragSource, isDragging, lastDroppedText, text } = this.props;
     return connectDragSource(
       <div style={{
         display: 'inline-block',
@@ -46,7 +46,7 @@ export class One extends Component {
         height: '100%',
         opacity: isDragging ? 0.5 : 1
       }}>
-        { lastDroppedText }
+        { text }
       </div>
     );
   }

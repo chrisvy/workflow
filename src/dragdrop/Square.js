@@ -8,7 +8,7 @@ export default class Square extends Component {
   }
 
   render() {
-    const { lastDroppedText } = this.props;
+    const { text } = this.props;
     // console.log('lastDroppedText ', lastDroppedText);
     // let childEle;
     // switch (lastDroppedText) {
@@ -36,7 +36,7 @@ export default class Square extends Component {
         width: '100%',
         height: '100%'
       }}>
-        {lastDroppedText && <One lastDroppedText={lastDroppedText} />}
+        {text && <One text={text} handleDrag={this.props.handleDrag} />}
       </div>
     );
   }

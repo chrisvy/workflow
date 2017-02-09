@@ -40,16 +40,21 @@ class Board extends Component {
   }
 
   handleDrop = (ele, x, y) => {
+    const pos =x+'-'+y;
     if (this.state.dragState === 'adding') {//ele: 'ha'
       const topEleInfo = this.state.topEles[ele];
       const topEleNum = topEleInfo ? topEleInfo.num+1 : 0;
-      const topEleIds = topEleInfo ? topEleInfo.eles.push(ele+'-'+topEleInfo.num) : [ele+'-0'];
+      console.log('topEleInfo.eles ', topEleInfo ? topEleInfo.eles : topEleInfo);
+      const eleId = ele+'-'+topEleNum;
+      console.log('eleId ', eleId);
+      // const topEleIds = topEleInfo ? topEleInfo.eles.push(eleId) : [ele+'-0'];
+      // console.log('topEleIds ', topEleIds);
       this.setState({
         topEles: {
           ...this.state.topEles,
           [ele]: {
             num: topEleNum,//记录个数
-            eles: topEleIds//拖入编辑区的节点id
+            eles: topEleInfo ? [...topEleInfo.eles, eleId] : [ele+'-0']//拖入编辑区的节点id
           }
         },
         boxElesPos: {
@@ -58,7 +63,7 @@ class Board extends Component {
         },
         boxPosEles: {
           ...this.state.boxPosEles,
-          [x+'-'+y]: ele+'-'+topEleNum
+          [pos]: ele+'-'+topEleNum
         },
         dragState: 'drop'
       });
@@ -68,11 +73,13 @@ class Board extends Component {
       const topEleInfo = this.state.topEles[eleSource];
       const boxPosEles = this.state.boxPosEles;
       const boxElesPos = this.state.boxElesPos;
-      const oldPos = boxElesPos[ele];
+      const oldPosArr = boxElesPos[ele];
+      const oldPos = oldPosArr[0]+'-'+oldPosArr[1];
       let newBoxPosEles = {};
       for(let inEle in boxPosEles) {
+        // console.log('inEle oldPos ', inEle, oldPos);
         if (inEle === oldPos) {
-          newBoxPosEles[x+'-'+y] = ele;
+          newBoxPosEles[pos] = ele;
         } else {
           newBoxPosEles[inEle] = boxPosEles[inEle];
         }
@@ -91,15 +98,21 @@ class Board extends Component {
   renderSquare = (i) => {
     const x = i % 8;
     const y = Math.floor(i / 8);
-
+    const pos = x+'-'+y;
+    const text = this.state.boxPosEles[pos];
+    // console.log('text ', pos, text);
     const [knightX, knightY] = this.props.position;
     return (
       <div key={i}
            style={{ width: '12.5%', height: '12.5%' }}>
-        <BoardSquare x={x} y={y} ele={this.boxPosEles[x+'-'+y]} handleDrop={this.handleDrop} handleDragMove={this.handleDragMove} />
+        <BoardSquare x={x} y={y} knightX={knightX} knightY={knightY} text={text} handleDrop={this.handleDrop} handleDrag={this.handleDragMove} />
       </div>
     )
   }
+
+  // componentDidUpdate = (preProps, preState) => {
+  //   console.log('preState ', preState);
+  // }
   
   render() {
     var squares = [];
@@ -108,8 +121,8 @@ class Board extends Component {
     }
     return (
       <div>
-        <One title="true" lastDroppedText="he" handleDrag={this.handleDragAdd} />
-        <One title="true" lastDroppedText="ha" handleDrag={this.handleDragAdd} />
+        <One title="true" text="he" handleDrag={this.handleDragAdd} />
+        <One title="true" text="ha" handleDrag={this.handleDragAdd} />
         <div style={{
           width: 300,
           height: 300,
