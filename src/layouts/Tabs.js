@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
 import BoardTop from './BoardTop';
 
-const Myoverflow = React.createClass({
+class Tabs extends Component {
   getInitialState() {
     this.newTabIndex = 0;
     const panes = [
@@ -58,6 +58,6 @@ const Myoverflow = React.createClass({
       </Tabs>
     );
   },
-});
+}
 
-export default Myoverflow
+export default Tabs

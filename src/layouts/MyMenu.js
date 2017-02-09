@@ -23,13 +23,13 @@ class MyMenu extends Component {
 
     return (
       <div className="ant-row">
-        <div className="ant-col-xs-24 ant-col-sm-6 ant-col-md-6 ant-col-lg-5">
+        <div className="ant-col-xs-24 ant-col-sm-4 ant-col-md-4 ant-col-lg-4">
           <div className="left-nav">
             <Search />
             <Contexts />
           </div>
         </div>
-        <div className="ant-col-xs-24 ant-col-sm-18 ant-col-md-18 ant-col-lg-19">
+        <div className="ant-col-xs-24 ant-col-sm-20 ant-col-md-20 ant-col-lg-20">
           <div className="right-context">
             {this.props.children}
           </div>
