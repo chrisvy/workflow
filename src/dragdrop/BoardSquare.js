@@ -6,6 +6,10 @@ import { DropTarget } from 'react-dnd';
 import { One, Two } from './DragElements';
 
 const squareTarget = {
+  canDrop(props) {
+    return canMoveKnight(props.text);
+  },
+
   drop: function (props, monitor) {
     console.log('drop ', monitor.getItem().text, props.x, props.y);
     props.handleDrop(monitor.getItem().text, props.x, props.y);
@@ -18,6 +22,7 @@ function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
+    canDrop: monitor.canDrop(),
     // draggingText: monitor.getItemType()
   };
 }
@@ -28,7 +33,7 @@ class TargetBox extends Component {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
     isOver: PropTypes.bool.isRequired,
-    // canDrop: PropTypes.bool.isRequired,
+    canDrop: PropTypes.bool.isRequired,
     // draggingText: PropTypes.string,
     connectDropTarget: PropTypes.func.isRequired
   }
@@ -53,7 +58,7 @@ class TargetBox extends Component {
   // }
 
   render() {
-    const { x, y, text, connectDropTarget, isOver, lastDroppedText, handleDrag, knightX, knightY } = this.props;
+    const { x, y, text, connectDropTarget, isOver, canDrop, lastDroppedText, handleDrag, knightX, knightY } = this.props;
     // console.log('draggingText ', lastDroppedText , x, y, knightX, knightY);
     return connectDropTarget(
       <div style={{
@@ -62,7 +67,8 @@ class TargetBox extends Component {
         height: '100%'
       }}>
         <Square text={text} knightX={knightX} knightY={knightY} handleDrag={handleDrag} />
-        {isOver && this.renderOverlay('green')}
+        {isOver && !canDrop && this.renderOverlay('red')}
+        {isOver && canDrop && this.renderOverlay('green')}
       </div>
     );
   }
