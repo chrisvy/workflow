@@ -1,4 +1,4 @@
-let position = [1, 7];
+let position = [];
 let observer = null;
 
 function emitChange() {

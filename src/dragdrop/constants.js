@@ -1,5 +1,6 @@
 const ItemTypes = {
-  KNIGHT: 'knight'
+  ONE: 'he',
+  TWO: 'ha'
 };
 
 export default ItemTypes;

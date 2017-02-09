@@ -1,24 +1,42 @@
 import React, { Component, PropTypes } from 'react';
+import ItemTypes from './Constants';
+import { One, Two } from './DragElements';
 
 export default class Square extends Component {
-  static propTypes = {
-    black: PropTypes.bool,
-    children: PropTypes.node
+  constructor(props) {
+    super(props);
   }
 
   render() {
-    const { black } = this.props;
-    const backgroundColor = black ? 'black' : 'white';
-    const color = black ? 'white' : 'black';
+    const { lastDroppedText } = this.props;
+    // console.log('lastDroppedText ', lastDroppedText);
+    // let childEle;
+    // switch (lastDroppedText) {
+    //   case ItemTypes.ONE:
+    //     childEle = <One />;
+    //     break;
+    //   case ItemTypes.TWO:
+    //     childEle = <Two />;
+    //     break;
+    //   default:
+    //     childEle = null;
+    // }
+
+    // return (
+    //   <div style={{
+    //     width: '100%',
+    //     height: '100%'
+    //   }}>
+    //     { childEle }
+    //   </div>
+    // );
 
     return (
       <div style={{
-        color,
-        backgroundColor,
         width: '100%',
         height: '100%'
       }}>
-        {this.props.children}
+        {lastDroppedText && <One lastDroppedText={lastDroppedText} />}
       </div>
     );
   }

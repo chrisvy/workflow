@@ -74,7 +74,18 @@ const cascaderMenu = (path) => ({
 	data: path
 })
 
-export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork, cascaderMenu};
+//------dragging-------
+const draggingAdd = (text) => ({
+	type: 'DRAGGINGADD',
+	data: text
+})
+
+const draggingMove = (text) => ({
+	type: 'DRAGGINGMOVE',
+	data: text
+})
+
+export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork, cascaderMenu, draggingAdd, draggingMove};
 
 
 
