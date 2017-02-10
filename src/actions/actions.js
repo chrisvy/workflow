@@ -54,9 +54,28 @@ const addDir = (dirName) => ({
 	data: dirName
 })
 
-
 const addWork = (workName) => ({
 	type: 'ADDWORK',
+	data: workName
+})
+
+const cpWork = (workName) => ({
+	type: 'CPWORK',
+	data: workName
+})
+
+const mvWork = (workName) => ({
+	type: 'MVWORK',
+	data: workName
+})
+
+const rmWork = (workName) => ({
+	type: 'RMWORK',
+	data: workName
+})
+
+const backWork = (workName) => ({
+	type: 'BACKWORK',
 	data: workName
 })
 
@@ -85,7 +104,13 @@ const draggingMove = (text) => ({
 	data: text
 })
 
-export {parsedMenu, changeMenu, open, select, search, searchResults, deleteSearchItem, contextItem, contextOperate, addDir, addWork, cascaderMenu, draggingAdd, draggingMove};
+export {
+	parsedMenu, changeMenu, open, select, 
+	search, searchResults, deleteSearchItem, 
+	contextItem, contextOperate, addDir, addWork, cpWork, mvWork, rmWork, backWork,
+	cascaderText, cascaderMenu,
+	draggingAdd, draggingMove
+};
 
 
 

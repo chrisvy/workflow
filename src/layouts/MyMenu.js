@@ -7,6 +7,10 @@ import Search from './Search';
 import Contexts from '../contexts/index';
 import AddDirModal from '../modals/AddDirModal';
 import AddWorkModal from '../modals/AddWorkModal';
+import CpWorkModal from '../modals/CpWorkModal';
+import MvWorkModal from '../modals/MvWorkModal';
+import RmWorkModal from '../modals/RmWorkModal';
+import BackModal from '../modals/BackModal';
 
 class MyMenu extends Component {
   
@@ -36,6 +40,10 @@ class MyMenu extends Component {
         </div>
         <AddDirModal />
         <AddWorkModal />
+        <CpWorkModal />
+        <MvWorkModal />
+        <RmWorkModal />
+        <BackModal />
       </div>
     );
   }

@@ -7,7 +7,10 @@ const menuDefaultState = {
     {'回收站': [{'d1':['d1.1','d1.2']}]}
   ],
   parsedRes: null,
-  openStatus: {},
+  openStatus: {
+    '0': true,
+    '1': true
+  },
 	itemSelected: false,
   selectKey: null
 };
@@ -120,6 +123,39 @@ const menuConReducer = (state=menuConDefaultState, action) => {
         },
         // contextOperate: action.data,////the operate is still useful
         contextObjectName: action.data,
+        contextButton: true
+      })
+    case 'ADDWORK':
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,//the path is still useful
+          contextType: ''
+        },
+        // contextOperate: action.data,////the operate is still useful
+        contextObjectName: action.data,
+        contextButton: true
+      })
+    case 'CPWORK':
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,//the path is still useful
+          contextType: ''
+        },
+        // contextOperate: action.data,////the operate is still useful
+        contextObjectName: action.data,
+        contextButton: true
+      })
+    case 'MVWORK'://删除工作流
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,//the path is still useful
+          contextType: ''
+        },
+        // contextOperate: action.data,////the operate is still useful
+        contextObjectName: ["delete"],
         contextButton: true
       })
     default:

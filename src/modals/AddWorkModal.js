@@ -4,7 +4,7 @@ import { Row, Col, Modal, Input, Radio } from 'antd';
 const RadioGroup = Radio.Group;
 import Cronmaker from './Cronmaker';
 import Cascader from '../Cascader/index';
-import { contextItem, addWorkflow } from '../actions/actions';
+import { contextItem, addWork } from '../actions/actions';
 
 class AddWorkModal extends Component {
 
@@ -24,7 +24,7 @@ class AddWorkModal extends Component {
   handleOk = (e) => {
     const newFile = this.refs.input.value;//校验
     console.log('Clicked OK', newFile);
-    this.props.dispatch(addWorkflow(newFile));
+    this.props.dispatch(addWork(newFile));
   }
 
   handleCancel = (e) => {
@@ -44,7 +44,7 @@ class AddWorkModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="新建工作流-基本信息" visible={ !contextButton && contextOperate === "addWorkflow" }
+        <Modal title="新建工作流-基本信息" visible={ !contextButton && contextOperate === "addWork" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
           <form className="ant-form">

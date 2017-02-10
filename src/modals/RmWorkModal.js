@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
-import { contextItem, mvWork } from '../actions/actions';
+import { contextItem, rmWork } from '../actions/actions';
 
-class MvWorkModal extends Component {
+class RemoveModal extends Component {
 
   constructor(props) {
     super(props);
@@ -18,8 +18,9 @@ class MvWorkModal extends Component {
   //   {'回收站': [{'d1':['d1.1','d1.2']}]}
   // ]
   handleOk = (e) => {
-    console.log('Clicked OK');
-    this.props.dispatch(mvWork());
+    const newFile = this.refs.input.value;//校验
+    console.log('Clicked OK', newFile);
+    this.props.dispatch(rmWork(newFile));
   }
 
   handleCancel = (e) => {
@@ -32,10 +33,10 @@ class MvWorkModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="删除工作流" visible={ !contextButton && contextOperate === "mvWork" }
+        <Modal title="彻底删除" visible={ !contextButton && contextOperate === "rmWork" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
-          <span>是否要删除该工作流？</span>
+          <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
         </Modal>
       </div>
     );
@@ -48,4 +49,4 @@ const mapStateToProps = state => {
   return { contextInfo, contextOperate, contextButton };
 }
 
-export default connect(mapStateToProps)(MvWorkModal);
+export default connect(mapStateToProps)(RemoveModal);

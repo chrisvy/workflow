@@ -49,36 +49,11 @@ class MyCascader extends Component {
 		const tmpMenus = Object.values(menus[0])[0];
 		// const tmpMenus = [menus[0]];
 		let results = {"works":{}, "files": {}};
-		const children = this.parseMenus(results, tmpMenus, '', 0);
+		const children = this.parseMenus(results, tmpMenus, '0-', 0);
 		this.setState({children});
 		// this.props.dispatch(parsedMenu(results));
 		// console.log('1', results);
 	}
-
-	// componentWillReceiveProps = (nextProps) => {//闪屏的原因是：串联下拉列表是绝对定位，脱离文档流，与模态框显示的冲突
-	// 	const { cascaderReducer: { path, text } } = nextProps;//
-	// 	// console.log("cascaderReducer", cascaderReducer);
-	// 	const oldText = this.state.value.split("/");
-	// 	const lastLevel = oldText.length;
-	// 	const currLevel = path.split("-").length;
-	// 	if (currLevel === 1) {
-	// 		this.setState({
-	// 			value: text
-	// 		})
-	// 	} else if (lastLevel >= currLevel) {
-	// 		let currText = oldText[0];
-	// 		for (let index=1; index<currLevel-1; index++) {
-	// 			currText += "/" + oldText[index];
-	// 		}
-	// 		this.setState({
-	// 			value: currText + '/' + text
-	// 		})
-	// 	} else {
-	// 		this.setState({
-	// 			value: this.state.value + '/' + text
-	// 		})
-	// 	}
-	// }
 
 	topHandleClick = (path, text) => {//闪屏
 		const oldText = this.state.value.split("/");

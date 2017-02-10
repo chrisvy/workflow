@@ -39,15 +39,15 @@ class ContextMenu extends Component {
 			  </div>
 			  <div className={classNames("context-item-group", {"context-item-group-open": contextType === "subFile"})} >
 			    <div className="context-item" onClick={e => this.handleClick("addDir")}>新建目录</div>
-			    <div className="context-item" onClick={e => this.handleClick("addWorkflow")}>新建工作流</div>
+			    <div className="context-item" onClick={e => this.handleClick("addWork")}>新建工作流</div>
 			  </div>
 			  <div className={classNames("context-item-group", {"context-item-group-open": contextType === "workflow"})} >
-			    <div className="context-item" onClick={e => this.handleClick("cpWorkflow")}>复制工作流</div>
-			    <div className="context-item" onClick={e => this.handleClick("mvWorkflow")}>移动工作流</div>
+			    <div className="context-item" onClick={e => this.handleClick("cpWork")}>复制工作流</div>
+			    <div className="context-item" onClick={e => this.handleClick("mvWork")}>删除工作流</div>
 			  </div>
 			  <div className={classNames("context-item-group", {"context-item-group-open": contextType === "trash"})} ref='mySubPopup'>
 			    <div className="context-item" onClick={e => this.handleClick("back")}>还原到</div>
-			    <div className="context-item" onClick={e => this.handleClick("remove")}>彻底删除</div>
+			    <div className="context-item" onClick={e => this.handleClick("rmWork")}>彻底删除</div>
 			  </div>
 			</div>
 		)

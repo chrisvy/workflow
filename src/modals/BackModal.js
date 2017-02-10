@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
-import { contextItem, addWorkflow } from '../actions/actions';
+import { contextItem, backWork } from '../actions/actions';
 
-class RemoveModal extends Component {
+class BackModal extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class RemoveModal extends Component {
   handleOk = (e) => {
     const newFile = this.refs.input.value;//校验
     console.log('Clicked OK', newFile);
-    this.props.dispatch(addWorkflow(newFile));
+    this.props.dispatch(backWork(newFile));
   }
 
   handleCancel = (e) => {
@@ -33,7 +33,7 @@ class RemoveModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="Add File" visible={ !contextButton && contextOperate === "addWorkflow" }
+        <Modal title="Add File" visible={ !contextButton && contextOperate === "back" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
           <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
   return { contextInfo, contextOperate, contextButton };
 }
 
-export default connect(mapStateToProps)(RemoveModal);
+export default connect(mapStateToProps)(BackModal);
