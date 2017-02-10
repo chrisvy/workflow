@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
 import BoardTop from './BoardTop';
+import '../styles/content.css';
 
 const Myoverflow = React.createClass({
   getInitialState() {
