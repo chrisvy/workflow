@@ -42,7 +42,6 @@ const Myoverflow = React.createClass({
     this.setState({ panes, activeKey });
   },
   render() {
-    const pane = this.state.panes[0];
     return (
       <Tabs
         onChange={this.onChange}
@@ -51,9 +50,16 @@ const Myoverflow = React.createClass({
         onEdit={this.onEdit}
       >
         {
-          <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
-            <BoardTop />
-          </TabPane>
+          this.state.panes.map(pane => 
+            <TabPane tab={pane.title} key={pane.key}>
+              <div className="base-content">
+                <span className="base-content-text">最后修改人：{pane.lastModified.user}</span>
+                <span className="base-content-text">最后修改时间：{pane.lastModified.time}</span>
+                <span className="base-content-text">状态：{pane.state}</span>
+                <BoardTop />
+              </div>
+            </TabPane>
+          )
         }
       </Tabs>
     );
