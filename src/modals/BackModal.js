@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input } from 'antd';
+import Cascader from '../Cascader/index';
 import { contextItem, backWork } from '../actions/actions';
 
 class BackModal extends Component {
@@ -18,9 +19,9 @@ class BackModal extends Component {
   //   {'回收站': [{'d1':['d1.1','d1.2']}]}
   // ]
   handleOk = (e) => {
-    const newFile = this.refs.input.value;//校验
-    console.log('Clicked OK', newFile);
-    this.props.dispatch(backWork(newFile));
+    // const newFile = this.refs.input.value;//校验
+    // console.log('Clicked OK', newFile);
+    this.props.dispatch(backWork());
   }
 
   handleCancel = (e) => {
@@ -33,10 +34,21 @@ class BackModal extends Component {
     const { contextOperate, contextButton } = this.props;
     return (
       <div>
-        <Modal title="Add File" visible={ !contextButton && contextOperate === "back" }
+        <Modal title="还原到" visible={ !contextButton && contextOperate === "back" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
-          <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
+          <form className="ant-form">
+            <div className="ant-row ant-form-item">
+              <div className="ant-col-4 ant-form-item-label">
+                <label /*htmlFor=""*/>
+                  所属目录
+                </label>
+              </div>
+              <div className="ant-col-18">
+                <Cascader />
+              </div>
+            </div>
+          </form>
         </Modal>
       </div>
     );

@@ -3,8 +3,8 @@ import { cronmakerReducer } from './cronmakerReducer';
 
 const menuDefaultState = {
   menus: [
-    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': [{"二级目录": [{"三级目录": ['工作流']}]}]}]},
-    {'回收站': [{'d1':['d1.1','d1.2']}]}
+    {'工作流开发': [{'4G业务': ['text_workflow', 'text_phone']}, {'宽带业务': ['21','22']}, {'信令': [{"二级目录": [{"三级目录": ['工作流XXXXXXXXX']}]}]}]},
+    {'回收站': ['d1']}
   ],
   parsedRes: null,
   openStatus: {
@@ -100,8 +100,9 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: action.data,//include path & contextType
+        contextOperate: '',
         contextObjectName:'',
-        contextButton: true
+        contextButton: false
       })
     case 'CONTEXTOPERATE':
       return Object.assign({}, {
@@ -156,6 +157,28 @@ const menuConReducer = (state=menuConDefaultState, action) => {
         },
         // contextOperate: action.data,////the operate is still useful
         contextObjectName: ["delete"],
+        contextButton: true
+      })
+    case 'BACKWORK'://还原工作流
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,//the path is still useful
+          contextType: ''
+        },
+        // contextOperate: action.data,////the operate is still useful
+        contextObjectName: ["back"],
+        contextButton: true
+      })
+    case 'RMWORK'://彻底删除工作流
+      return Object.assign({}, {
+        ...state,
+        contextInfo: {
+          ...state.contextInfo,//the path is still useful
+          contextType: ''
+        },
+        // contextOperate: action.data,////the operate is still useful
+        contextObjectName: ["remove"],
         contextButton: true
       })
     default:

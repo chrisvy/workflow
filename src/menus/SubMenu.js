@@ -21,8 +21,9 @@ class SubMenu extends Component {
 		this.props.dispatch(open(path));
 	}
 
-	handleContextMenu = path => (e) => {
-		this.props.dispatch(contextItem(path, "subFile"));
+	handleContextMenu = (path, contextType) => (e) => {
+		console.log('handleContextMenu ', path, contextType);
+		this.props.dispatch(contextItem(path, contextType));
 	}
 
 	render() {

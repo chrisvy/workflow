@@ -53,7 +53,7 @@ class Contexts extends Component {
     return (
       <div className="ant-row">
         <ContextTrigger onContextMenu={this.handleContextClick}>
-          <div className="mymenu">
+          <div className="mymenu menu-box">
             <ul className="root-menu">
               <MenuItems/>
             </ul>

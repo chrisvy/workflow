@@ -1,3 +1,7 @@
+.menu-box {
+  overflow: scroll;
+  white-space: nowrap;
+}
 
 .ant-input-preSuffix-wrapper {
     position: relative;
@@ -109,7 +113,7 @@
   padding: 0;
   font-size: 12px;
   line-height: 36px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   text-overflow: ellipsis;
 }
 
