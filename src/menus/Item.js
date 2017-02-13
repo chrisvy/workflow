@@ -13,16 +13,16 @@ class Level2 extends Component {
 		this.props.dispatch(select(path));
 	}
 
-	handleContextMenu = (path, contextType) => (e) => {
-		console.log('handleContextMenu ', path, contextType);
-		this.props.dispatch(contextItem(path, contextType));
+	handleContextMenu = (path, text, contextType) => (e) => {
+		console.log('handleContextMenu ', path, text, contextType);
+		this.props.dispatch(contextItem(path, text, contextType));
 	}
 
 	render() {
 		const { path, text, itemSelected, selectKey, level } = this.props;
 		const itemClass = classNames("menu-item", {"menu-item-selected" : (itemSelected && selectKey === path) });
 		const contextType = "workflow";
-		return <li className={itemClass} onClick={this.handleClick(path)} data-path={path} style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, contextType)} >{text}</li>
+		return <li className={itemClass} onClick={this.handleClick(path)} data-path={path} style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, text, contextType)} >{text}</li>
 	}
 }
 

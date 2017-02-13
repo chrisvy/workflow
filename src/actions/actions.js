@@ -36,10 +36,11 @@ const deleteSearchItem = (index) => ({
 })
 
 //------context-------
-const contextItem = (path, contextType) => ({
+const contextItem = (path, text, contextType) => ({
 	type: 'CONTEXTITEM',
 	data: {
 		path,
+		text,
 		contextType
 	}
 })

@@ -99,7 +99,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
     case 'CONTEXTITEM':
       return Object.assign({}, {
         ...state,
-        contextInfo: action.data,//include path & contextType
+        contextInfo: action.data,//include path & text & contextType
         contextOperate: '',
         contextObjectName:'',
         contextButton: false
@@ -108,7 +108,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         contextOperate: action.data,
@@ -119,7 +119,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful
@@ -130,7 +130,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful
@@ -141,7 +141,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful
@@ -152,7 +152,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful
@@ -163,7 +163,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful
@@ -174,7 +174,7 @@ const menuConReducer = (state=menuConDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         contextInfo: {
-          ...state.contextInfo,//the path is still useful
+          ...state.contextInfo,//the path & text is still useful
           contextType: ''
         },
         // contextOperate: action.data,////the operate is still useful

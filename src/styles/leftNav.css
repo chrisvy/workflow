@@ -1,5 +1,5 @@
 .menu-box {
-  overflow: scroll;
+  overflow: auto;
   white-space: nowrap;
 }
 
@@ -110,10 +110,9 @@
 }
 
 .topmenu {
-  padding: 0;
+  // padding: 0;
   font-size: 12px;
-  line-height: 36px;
-  /*overflow: hidden;*/
+  line-height: 30px;
   text-overflow: ellipsis;
 }
 
@@ -123,7 +122,8 @@
 }
 
 .submenu {
-  line-height: 36px;
+  line-height: 30px;
+  width: 100%;
 }
 
 .submenu > ul {
@@ -135,17 +135,17 @@
 }
 
 .submenu-title {
-  margin: 0;
+  // margin: 0;
   position: relative;
   display: block;
   white-space: nowrap;
 }
 
 .submenu-title {
-  padding: 0 40px;
+  // padding: 0 40px;
 }
 
-.submenu-title:after {
+.submenu-title:before {
   font-family: "anticon" !important;
   font-style: normal;
   vertical-align: baseline;
@@ -154,29 +154,25 @@
   text-rendering: auto;
   position: absolute;
   transition: transform .3s ease;
-  content: "\E61D";
+  content: "\E606";
   top: 0;
   display: inline-block;
   font-size: 12px;
   font-size: 8px \9;
-  transform: scale(0.66666667) rotate(270deg);
+  transform: translate(-15px, 0) scale(0.66666667) rotate(270deg);
   -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
   zoom: 1;
 }
 
-.submenu-title:after {
-  right: 20px;
-}
-
-.top-menu-open > .top-menu-title:after,
-.submenu-open > .submenu-title:after {
+.top-menu-open > .top-menu-title:before,
+.submenu-open > .submenu-title:before {
     -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-    transform: rotate(0deg) scale(0.75);
+    transform: translate(-15px, 0) rotate(0deg) scale(0.75);
 }
 
 .menu-item {
   cursor: pointer;
-  padding: 0 40px;
+  // padding: 0 40px;
   line-height: 30px;
 }
 
@@ -186,9 +182,14 @@
   background-color: #dff0fe;
 }
 
+.work-space,
+.cycle-space {
+  border: solid 1px #eee;
+}
+
 .menu-item-selected {
   background-color: #ecf6fd;
-  border-right: solid 3px blue;
+  // border-right: solid 3px blue;
 }
 
 .menu-item-searched {

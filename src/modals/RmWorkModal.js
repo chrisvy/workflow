@@ -18,9 +18,8 @@ class RemoveModal extends Component {
   //   {'回收站': [{'d1':['d1.1','d1.2']}]}
   // ]
   handleOk = (e) => {
-    const newFile = this.refs.input.value;//校验
-    console.log('Clicked OK', newFile);
-    this.props.dispatch(rmWork(newFile));
+    console.log('Clicked OK');
+    this.props.dispatch(rmWork());
   }
 
   handleCancel = (e) => {
@@ -30,13 +29,13 @@ class RemoveModal extends Component {
 
   render() {
 
-    const { contextOperate, contextButton } = this.props;
+    const { contextInfo, contextOperate, contextButton } = this.props;
     return (
       <div>
         <Modal title="彻底删除" visible={ !contextButton && contextOperate === "rmWork" }
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
-          <input type="text" placeholder="请输入目录名称" className="ant-input" ref="input" />
+          确认彻底删除工作流{contextInfo && contextInfo.text}？
         </Modal>
       </div>
     );
