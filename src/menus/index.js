@@ -52,11 +52,10 @@ class MyMenuItem extends Component {
 					let children = this.menusAddDir(aimPath, contextObjectName, results, subArr, nowPath + '-', level+1);
 					if (nowPath === aimPath) {
 						const childrenNum = children.length;
-						// console.log("nowPath", nowPath, childrenNum);
 						const appendPath = nowPath + '-' + childrenNum;
 						children.push(<SubMenu key={appendPath} text={contextObjectName} path={appendPath} level={level+1} />);
 						results["files"][appendPath] = contextObjectName;
-						obj[key].push({[contextObjectName]: []});
+						obj[key].push({[contextObjectName]: []});//直接修改menus
 					}
 					return <SubMenu key={nowPath} text={key} path={nowPath} level={level} children={children}/>
 				});
@@ -82,7 +81,7 @@ class MyMenuItem extends Component {
 						const appendPath = nowPath + '-' + childrenNum;
 						children.push(<Item key={appendPath} text={contextObjectName} path={appendPath} level={level+1} />);
 						results["works"][appendPath] = contextObjectName;
-						obj[key].push(contextObjectName);
+						obj[key].push(contextObjectName);//直接修改menus
 					}
 					return <SubMenu key={nowPath} text={key} path={nowPath} level={level} children={children}/>
 				});
@@ -95,7 +94,6 @@ class MyMenuItem extends Component {
 			const nowPath = path + index;
 			if (typeof obj === "string") {
 				if (nowPath === aimPath) {
-					// tmpText[0] = obj;
 					return null;
 				} else {
 					results["works"][nowPath] = obj;//{ name: obj, isWork: true }
@@ -107,10 +105,16 @@ class MyMenuItem extends Component {
 						const subArr = obj[key];
 						results["files"][nowPath] = key;//{ name: key, isWork: false, kidsNum: subArr.length }
 						let children = this.menusDeleteWork(aimPath, contextObjectName, results, subArr, nowPath + '-', level+1);
-						if (nowPath === '1') {
+						const lastFlag = aimPath.lastIndexOf('-');
+						const parPath = aimPath.slice(0, lastFlag);
+						const theIndex = aimPath.slice(lastFlag+1);
+						if (nowPath === parPath) {
+							delete subArr[theIndex];
+						} else if (nowPath === '1') {
 							const addItem = '1-' + children.length;
 							console.log('1', addItem, contextObjectName);
 							children.push(<Item key={addItem} path={addItem} text={contextObjectName} level={1} />);
+							subArr.push(contextObjectName);
 						}
 						return <SubMenu key={nowPath} text={key} path={nowPath} level={level} children={children}/>
 					});
@@ -123,10 +127,11 @@ class MyMenuItem extends Component {
 			const nowPath = path + index;
 			if (typeof obj === "string") {
 				if (nowPath === oriPath) {
-					console.log('nowPath 0', nowPath);
+					const lastFlag = oriPath.lastIndexOf('-');
+					const theIndex = oriPath.slice(lastFlag+1);
+					delete menus[theIndex];
 					return null;
 				} else {
-					console.log('nowPath 1', nowPath);
 					results["works"][nowPath] = obj;//{ name: obj, isWork: true }
 					return <Item key={nowPath} path={nowPath} text={obj} level={level} />
 				}
@@ -140,6 +145,7 @@ class MyMenuItem extends Component {
 							const addItem = openPath + '-' + children.length;
 							children.push(<Item key={addItem} path={addItem} text={contextObjectName} level={level+1} />);
 							results["works"][addItem] = contextObjectName;
+							subArr.push(contextObjectName);
 						}
 						return <SubMenu key={nowPath} text={key} path={nowPath} level={level} children={children}/>
 					});
@@ -152,6 +158,9 @@ class MyMenuItem extends Component {
 			const nowPath = path + index;
 			if (typeof obj === "string") {
 				if (nowPath === oriPath) {
+					const lastFlag = oriPath.lastIndexOf('-');
+					const theIndex = oriPath.slice(lastFlag+1);
+					delete menus[theIndex];
 					return null;
 				} else {
 					results["works"][nowPath] = obj;//{ name: obj, isWork: true }

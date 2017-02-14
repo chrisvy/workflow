@@ -21,7 +21,6 @@ const menuReducer = (state=menuDefaultState, action) => {
       return Object.assign({}, {
         ...state,
         parsedRes: action.data,
-        contextInfo: null,
         contextObjectName: ''
       })
     case 'CHANGEMENU':

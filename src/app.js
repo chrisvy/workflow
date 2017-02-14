@@ -10,7 +10,7 @@ import reducer from './reducers/reducer';
 // import Menu from './layouts/menu';
 // import Context from './layouts/context';
 import MyMenu from './layouts/MyMenu';
-import Tabs from './dragdrop/myoverflow';
+import Tabs from './layouts/Tabs';
 import DevTools from './containers/DevTools';
 
 const initialState = {}

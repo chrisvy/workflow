@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 var classNames = require('classnames');
 import Item from './Item';
-import { open, contextItem } from '../actions/actions';
+import { open, select, contextItem } from '../actions/actions';
 
 class SubMenu extends Component {
 	constructor(props) {
@@ -21,18 +21,19 @@ class SubMenu extends Component {
 		this.props.dispatch(open(path));
 	}
 
-	handleContextMenu = (path, contextType) => (e) => {
+	handleContextMenu = (path, text, contextType) => (e) => {
 		console.log('handleContextMenu ', path, contextType);
-		this.props.dispatch(contextItem(path, contextType));
+		this.props.dispatch(contextItem(path, text, contextType));
+		this.props.dispatch(select(path));
 	}
 
 	render() {
-		const { path, text, children, level, openStatus } = this.props;
-		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : openStatus[path]});//{divOpen : !this.state.divOpen}
-		const titleClass = classNames('submenu-title', {'work-space': path === '0'}, {'cycle-space': path === '1'});
+		const { path, text, children, level, openStatus, contextInfo ,itemSelected, selectKey } = this.props;
+		const titleClass = classNames('submenu-title', {'work-space': path === '0'}, {'cycle-space': path === '1'}, {'submenu-selected': (itemSelected && selectKey === path)});
+		const divClass = classNames(level ? "submenu" : "topmenu", {"submenu-open" : openStatus[path]});
 		return (
 			<li className={divClass} onClick={this.handleClick(path)} data-path={path} >
-				<div className={titleClass} style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, "subFile")}>{text}</div>
+				<div className={titleClass} style={{"paddingLeft": level*24+24}} onContextMenu={this.handleContextMenu(path, text, "subFile")}>{text}</div>
 				<ul>
 					{ children }
 				</ul>
@@ -42,8 +43,8 @@ class SubMenu extends Component {
 }
 
 const mapStateToProps = state => {
-	const { menuReducer: { openStatus } } = state;
-	return { openStatus };
+	const { menuReducer: { openStatus, itemSelected, selectKey }, menuConReducer: { contextInfo } } = state;
+	return { openStatus, contextInfo, itemSelected, selectKey };
 }
 
 export default connect(mapStateToProps)(SubMenu);

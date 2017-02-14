@@ -182,15 +182,17 @@
   background-color: #dff0fe;
 }
 
+.submenu-selected,
+.menu-item-selected {
+  background-color: #ecf6fd;
+  // border-right: solid 3px blue;
+}
+
 .work-space,
 .cycle-space {
   border: solid 1px #eee;
 }
 
-.menu-item-selected {
-  background-color: #ecf6fd;
-  // border-right: solid 3px blue;
-}
 
 .menu-item-searched {
   background-color: #42A6F6;

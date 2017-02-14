@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 const TabPane = Tabs.TabPane;
-import BoardTop from './BoardTop';
+import BoardTop from '../dragdrop/BoardTop';
+import '../styles/tabContent.css';
 
-class Tabs extends Component {
+const Myoverflow = React.createClass({
   getInitialState() {
     this.newTabIndex = 0;
     const panes = [
@@ -42,7 +43,6 @@ class Tabs extends Component {
     this.setState({ panes, activeKey });
   },
   render() {
-    const pane = this.state.panes[0];
     return (
       <Tabs
         onChange={this.onChange}
@@ -51,13 +51,20 @@ class Tabs extends Component {
         onEdit={this.onEdit}
       >
         {
-          <TabPane tab={pane.title} key={pane.key}>最后修改人：{pane.lastModified.user}  最后修改时间：{pane.lastModified.time} 状态：{pane.state}
-            <BoardTop />
-          </TabPane>
+          this.state.panes.map(pane => 
+            <TabPane tab={pane.title} key={pane.key}>
+              <div className="base-content">
+                <span className="base-content-text">最后修改人：{pane.lastModified.user}</span>
+                <span className="base-content-text">最后修改时间：{pane.lastModified.time}</span>
+                <span className="base-content-text">状态：{pane.state}</span>
+                <BoardTop />
+              </div>
+            </TabPane>
+          )
         }
       </Tabs>
     );
   },
-}
+});
 
-export default Tabs
+export default Myoverflow
