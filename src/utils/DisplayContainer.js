@@ -25,6 +25,12 @@ const DisplayContainer = (WrappedComponent) =>
 	  	}
 	  }
 
+	  innerHide = () => {
+	  	this.setState({
+				showFlag: false
+			});
+	  }
+
 	  show = () => {
 	  	this.setState({
 				showFlag: true
@@ -49,7 +55,8 @@ const DisplayContainer = (WrappedComponent) =>
 			const newProps = {
 				wrapDisplayProps: {
 					showFlag: this.state.showFlag,
-					show: this.show
+					show: this.show,
+					innerHide: this.innerHide
 				}
 			}
 			return (

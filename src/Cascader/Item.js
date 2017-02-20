@@ -7,16 +7,7 @@ class Item extends Component {
 	constructor(props) {
     super(props);
   }
-
-	// handleClick = (path) => e => {
-	// 	e.stopPropagation();
-	// 	this.props.dispatch(select(path));
-	// }
-
-	// handleContextMenu = (path, contextType) => (e) => {
-	// 	this.props.dispatch(contextItem(path, contextType));
-	// }
-
+  
 	render() {
 		const { path, text, itemSelected, selectKey, level } = this.props;
 		const itemClass = classNames("menu-item", {"menu-item-selected" : (itemSelected && selectKey === path) });

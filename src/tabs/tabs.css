@@ -1,0 +1,34 @@
+.ant-tabs-nav-container {
+	background-color: #eee;
+}
+
+.ant-tabs-nav .ant-tabs-tab .anticon {
+	margin: 0;
+}
+
+.ant-tabs-nav .my-tabs-tab {
+	padding: 3px 8px;
+	background-color: #f8f8f8;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+	background-color: #fff;
+}
+
+.my-tabs-tab-title {
+	margin: 0 8px 0 0;
+}
+
+.add-tabs-button {
+	margin: 0 8px;
+	display: inline;
+	cursor: pointer;
+}
+
+.add-tabs-overflow {
+	float: right;
+}
+
+.add-tabs-title {
+	font-weight: bold;
+}

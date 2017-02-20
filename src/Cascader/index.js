@@ -81,9 +81,11 @@ class MyCascader extends Component {
 		}
 	}
 
-	handleFocus = e => {
+	handleClick = e => {
 		if (!this.props.wrapDisplayProps.showFlag) {
 			this.props.wrapDisplayProps.show();
+		} else {
+			this.props.wrapDisplayProps.innerHide();
 		}
 	}
 
@@ -92,7 +94,7 @@ class MyCascader extends Component {
 		const cascaderClass = classNames("my-cascader-menus", {"my-cascader-menus-show": wrapDisplayProps.showFlag });
 		return (
 			<div>
-				<input type="text" placeholder="选择所属目录" className="ant-input ant-cascader-input" ref="input" value={this.state.value} readOnly autoComplete="off" onFocus={this.handleFocus}/>
+				<input type="text" placeholder="选择所属目录" className="ant-input ant-cascader-input" ref="input" value={this.state.value} readOnly autoComplete="off" onClick={this.handleClick}/>
 	      <ul className={cascaderClass}>
 					{
 						this.state.children

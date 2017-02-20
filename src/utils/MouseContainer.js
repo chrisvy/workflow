@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 const MyContainer = (WrappedComponent) => 
 	class extends Component {
+		static defaultProps = {
+      holdToDisplay: 1000,
+    };
+    
 		constructor(props) {
 			super(props);
 		}

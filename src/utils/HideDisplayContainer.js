@@ -12,8 +12,11 @@ const DisplayContainer = (WrappedComponent) =>
 		}
 
 		hide = (e) => {
+			const node = ReactDOM.findDOMNode(this);
+	  	const target = e.target || e.srcElement;
+	  	const isInside = node.contains(target);
 
-	  	if (this.state.showFlag) {
+	  	if (this.state.showFlag && !isInside) {
 	  		this.setState({
 	  			showFlag: false
 	  		});
@@ -29,15 +32,18 @@ const DisplayContainer = (WrappedComponent) =>
 	  componentDidUpdate = (prevProps, prevState) => {
 	  	if(!this.state.showFlag && prevState.showFlag) {
 	  		document.removeEventListener('click', this.hide);
+		  	document.removeEventListener('contextmenu', this.hide);
 	  	}
 
 	  	if(this.state.showFlag && !prevState.showFlag) {
 	  		document.addEventListener('click', this.hide);
+		  	document.addEventListener('contextmenu', this.hide);
 	  	}
 	  }
 
 	  componentWillUnmount = () => {
 	  	document.removeEventListener('click', this.hide);
+	  	document.removeEventListener('contextmenu', this.hide);
 	  }
 
 		render() {

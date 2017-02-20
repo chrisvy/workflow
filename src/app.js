@@ -11,6 +11,7 @@ import reducer from './reducers/reducer';
 // import Context from './layouts/context';
 import MyMenu from './layouts/MyMenu';
 import Tabs from './layouts/Tabs';
+import MyTabs from './tabs/index';
 import DevTools from './containers/DevTools';
 
 const initialState = {}
@@ -54,8 +55,8 @@ render(
     <div>
     <Router history={browserHistory}>
       <Route path="/" component={MyMenu} >
-        <IndexRoute component={Tabs} />
-        <Route path="myworkflow" component={App} />
+        <IndexRoute component={MyTabs} />
+        <Route path="myworkflow" component={Tabs} />
       </Route>
     </Router>
     {/*<DevTools />*/}
