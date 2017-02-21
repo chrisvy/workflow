@@ -36,15 +36,6 @@ class Contexts extends Component {
     });
 
     this.props.wrapDisplayProps.show();
-
-  // hideMenu();
-
-  // showMenu({
-  //     position: {x, y},
-  //     target: this.elem,
-  //     id: this.props.id,
-  //     data: callIfExists(this.props.collect, this.props)
-  // });
   }
 
 	render() {

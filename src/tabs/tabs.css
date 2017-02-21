@@ -1,5 +1,6 @@
 .ant-tabs-nav-container {
 	background-color: #eee;
+	overflow: visible;
 }
 
 .ant-tabs-nav .ant-tabs-tab .anticon {
@@ -21,14 +22,19 @@
 
 .add-tabs-button {
 	margin: 0 8px;
-	display: inline;
+	display: inline-block;
 	cursor: pointer;
 }
 
 .add-tabs-overflow {
 	float: right;
+	display: block;
+	position: relative;
 }
-
-.add-tabs-title {
-	font-weight: bold;
+	
+.add-tabs-addon-lists {
+	position: absolute;
+  z-index: 1000;
+  display: block;
+  right: 0;
 }
