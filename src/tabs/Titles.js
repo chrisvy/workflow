@@ -53,12 +53,10 @@ class Titles extends Component {
     const button = document.getElementById("mytabs-button");
     let widthLeft = container.clientWidth - float.clientWidth - button.clientWidth;
     let showList = [], hideList = [], reRender = false;
-    console.log('1 all', container.clientWidth, '2 hide', float.clientWidth, '3 new', button.clientWidth, 'left', widthLeft);
     titlesArr.reverse().map((title, index) => {
       const theWidth = title.clientWidth;
       const theId = title.getAttribute("data-id");
       widthLeft -= theWidth;
-      console.log("index", index, theWidth, 'left', widthLeft);
       if (widthLeft < 0) {
         hideList.unshift(theId);
         if (activeIndex === selectedTabs.length-index-1) {
