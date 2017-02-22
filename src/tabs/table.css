@@ -1,0 +1,28 @@
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 8px 8px;
+}
+
+.table-box {
+	padding: 15px 20px;
+}
+
+.ant-table {
+	overflow: visible;
+}
+
+.ant-pagination-item {
+	border-radius: 0;
+  margin-right: 0;
+}
+
+.ant-pagination-prev,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+	border-radius: 3px 0 0 3px;
+	margin-right: 0;
+}
+
+.ant-pagination-next {
+	border-radius: 0 3px 3px 0;
+}
+
