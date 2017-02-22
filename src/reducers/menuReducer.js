@@ -124,6 +124,13 @@ const menuReducer = (state=menuDefaultState, action) => {
         selectKey: action.path,
         activeIndex: action.data
       })
+    case 'REARRANGETAB':
+      console.log('REARRANGETAB', state.selectedTabs, action.data.newSelectedTabs, state.activeIndex, action.data.newActiveIndex);
+      return Object.assign({}, {
+        ...state,
+        selectedTabs: action.data.newSelectedTabs,
+        activeIndex: action.data.newActiveIndex
+      })
     case 'CLOSETAB':
       let newTmp, newActive;
       if (action.data === state.tmpIndex || null === state.tmpIndex) {

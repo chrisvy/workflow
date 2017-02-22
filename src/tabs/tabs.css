@@ -21,7 +21,7 @@
 }
 
 .add-tabs-button {
-	margin: 0 8px;
+	padding: 0 8px;
 	display: inline-block;
 	cursor: pointer;
 }
@@ -31,10 +31,42 @@
 	display: block;
 	position: relative;
 }
+
+.add-tabs-overflow-text {
+	line-height: 27px;
+	cursor: pointer;
+}
 	
 .add-tabs-addon-lists {
 	position: absolute;
   z-index: 1000;
-  display: block;
   right: 0;
+  max-height: 500px;
+  overflow: visible;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  animation: dropdownopen .3s ease-out;
+}
+
+.add-tabs-addon-lists:before {
+  right: 12px;
+  position: absolute;
+  top: -7px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: #fff;
+  content: '';
+}
+
+@keyframes dropdownopen {
+	0% {display: none}
+	100% {display: block}
+}
+
+.add-tabs-addon-item {
+	cursor: pointer;
 }

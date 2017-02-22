@@ -36,4 +36,12 @@ const closeTab = (index) => ({
 	data: index
 })
 
-export { parsedMenu, changeMenu, open, select, dblSelect, changeTab, closeTab }
+const rearrangeTab = (newSelectedTabs, newActiveIndex) => ({
+	type: 'REARRANGETAB',
+	data: {
+		newSelectedTabs,
+		newActiveIndex
+	}
+})
+
+export { parsedMenu, changeMenu, open, select, dblSelect, changeTab, closeTab, rearrangeTab }
