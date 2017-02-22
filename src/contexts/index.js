@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MenuItems from '../menus/index';
 import ContextMenu from './ContextMenu';
 import ContextTrigger from './ContextTrigger';
-import HideDisplayContainer from '../utils/HideDisplayContainer';
+import HideDisplayContainer from '../utils/DisplayContainer';
 
 @HideDisplayContainer
 class Contexts extends Component {
@@ -36,6 +36,20 @@ class Contexts extends Component {
     });
 
     this.props.wrapDisplayProps.show();
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(!this.state.menuShow && prevState.menuShow) {
+      document.removeEventListener('click', this.props.wrapDisplayProps.innerHide);
+    }
+
+    if(this.state.menuShow && !prevState.menuShow) {
+      document.addEventListener('click', this.props.wrapDisplayProps.innerHide);
+    }
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('click', this.props.wrapDisplayProps.innerHide);
   }
 
 	render() {

@@ -1,3 +1,32 @@
+.header-nav {
+  background-color: #3BAFDA;
+}
+
+.header-nav-ul {
+  list-style: none;
+}
+
+.header-nav-title {
+  float: left;
+  width: 200px;
+  margin-left: 35px;
+  line-height: 45px;
+  font-size: 17px;
+  color: #fff;
+}
+
+.header-nav-li {
+  float: left;
+  padding: 3px 12px;
+  line-height: 45px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.header-nav-li-selected {
+  background-color: #009bbd;
+}
+
 .menu-box {
   overflow: auto;
   white-space: nowrap;

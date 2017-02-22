@@ -26,24 +26,34 @@ class MyMenu extends Component {
 	render() {
 
     return (
-      <div className="ant-row">
-        <div className="ant-col-xs-24 ant-col-sm-4 ant-col-md-4 ant-col-lg-4">
-          <div className="left-nav">
-            <Search />
-            <Contexts />
-          </div>
+      <div>
+        <div className="ant-row header-nav">
+          <span className="header-nav-title">智能调度引擎</span>
+          <ul className="header-nav-ul">
+            <li className="header-nav-li">总览</li>
+            <li className="header-nav-li header-nav-li-selected">产品服务 &or;</li>
+            <li className="header-nav-li">文档与帮助</li>
+          </ul>
         </div>
-        <div className="ant-col-xs-24 ant-col-sm-20 ant-col-md-20 ant-col-lg-20">
-          <div className="right-context">
-            {this.props.children}
+        <div className="ant-row">
+          <div className="ant-col-xs-24 ant-col-sm-4 ant-col-md-4 ant-col-lg-4">
+            <div className="left-nav">
+              <Search />
+              <Contexts />
+            </div>
           </div>
+          <div className="ant-col-xs-24 ant-col-sm-20 ant-col-md-20 ant-col-lg-20">
+            <div className="right-context">
+              {this.props.children}
+            </div>
+          </div>
+          <AddDirModal />
+          <AddWorkModal />
+          <CpWorkModal />
+          <MvWorkModal />
+          <RmWorkModal />
+          <BackModal />
         </div>
-        <AddDirModal />
-        <AddWorkModal />
-        <CpWorkModal />
-        <MvWorkModal />
-        <RmWorkModal />
-        <BackModal />
       </div>
     );
   }

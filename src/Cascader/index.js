@@ -47,12 +47,9 @@ class MyCascader extends Component {
 	componentDidMount = () => {
 		const { menus } = this.props;
 		const tmpMenus = Object.values(menus[0])[0];
-		// const tmpMenus = [menus[0]];
 		let results = {"works":{}, "files": {}};
 		const children = this.parseMenus(results, tmpMenus, '0-', 0);
 		this.setState({children});
-		// this.props.dispatch(parsedMenu(results));
-		// console.log('1', results);
 	}
 
 	topHandleClick = (path, text) => {//闪屏

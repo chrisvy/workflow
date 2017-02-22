@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { contextOperate, changeTab, closeTab, rearrangeTab } from '../actions/actions';
+import { contextOperate, changeTab, closeTab, rearrangeTab, select } from '../actions/actions';
 
 class Titles extends Component {
   constructor(props) {
@@ -22,6 +22,11 @@ class Titles extends Component {
 
   handleChangeTab = (index, item) => {
     this.props.dispatch(changeTab(index, item));
+  }
+
+  handleOpen = (path, text) => e => {
+    e.stopPropagation();
+    this.props.dispatch(select(path, text));//text打开对应的Tab
   }
 
   handleClose = (index) => (e) => {
@@ -51,7 +56,7 @@ class Titles extends Component {
     const titlesArr = Array.from(titlesObj);
     const float = document.getElementById("mytabs-float");
     const button = document.getElementById("mytabs-button");
-    let widthLeft = container.clientWidth - float.clientWidth - button.clientWidth;
+    let widthLeft = container.clientWidth - float.clientWidth - button.clientWidth - 10;
     let showList = [], hideList = [], reRender = false;
     titlesArr.reverse().map((title, index) => {
       const theWidth = title.clientWidth;
@@ -107,8 +112,9 @@ class Titles extends Component {
     const { selectedTabs, tmpIndex, activeIndex, parsedRes, notSaveState } = this.props;
     const handleChangeTab = this.handleChangeTab;
     const handleClose = this.handleClose;
+    const handleOpen = this.handleOpen;
     const { showList, hideList } = this.state;
-    // console.log('lists', this.state.showList, this.state.hideList);
+    // console.log('lists', showList, hideList);
     return (
       <div className="ant-tabs-nav-container" id="mytabs-container">
         <div className="ant-tabs-nav" id="mytabs-titles">
@@ -128,7 +134,7 @@ class Titles extends Component {
                 return <div className={classNames("ant-tabs-tab", "my-tabs-tab", {"ant-tabs-tab-active": index+hideList.length===activeIndex})} key={item} data-id={item} onClick={() => handleChangeTab(index+hideList.length, item)}>
                   {notSaveState && notSaveState[item] && <span>*</span>}
                   <span className="my-tabs-tab-title">{title}</span>
-                  <i className="anticon anticon-close" onClick={handleClose(index)}></i>
+                  <i className="anticon anticon-close" onClick={handleClose(index+hideList.length)}></i>
                 </div>
             })
          }
@@ -139,14 +145,18 @@ class Titles extends Component {
          }
          </div>
           <div className="add-tabs-overflow" id="mytabs-float">
-            <span  className="add-tabs-overflow-text" onClick={this.showMore}>隐藏</span>
             {
-              this.state.wholeRender ? null : this.state.showMore &&
+              hideList.length ? <span className="add-tabs-overflow-text" onClick={this.showMore}>隐藏</span> : null
+            }
+            {
+              this.state.wholeRender ? null : this.state.showMore && hideList.length !== 0 &&
               <ul className="add-tabs-addon-lists">
                 {
-                  hideList.map(item => {
+                  hideList.map((item, index) => {//item means path
                     const title = parsedRes["works"][item];
-                    return <li key={item} className="add-tabs-addon-item">{title}</li>
+                    return <li key={item} className="add-tabs-addon-item" onClick={handleOpen(item, title)}>
+                      <span className="add-tabs-addon-text">{title}<i className="anticon anticon-close" onClick={handleClose(index)}></i></span>
+                    </li>
                   })
                 }
               </ul>

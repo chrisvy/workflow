@@ -10,6 +10,7 @@
 .ant-tabs-nav .my-tabs-tab {
 	padding: 3px 8px;
 	background-color: #f8f8f8;
+	border-right: solid 1px #eee;
 }
 
 .ant-tabs-nav .ant-tabs-tab-active {

@@ -20,11 +20,6 @@ const select = (path, text=null) => ({
 	text: text
 })
 
-const dblSelect = (path) => ({
-	type: 'DBLSELECT',
-	data: path
-})
-
 const changeTab = (index, path) => ({
 	type: 'CHANGETAB',
 	data: index,
@@ -44,4 +39,4 @@ const rearrangeTab = (newSelectedTabs, newActiveIndex) => ({
 	}
 })
 
-export { parsedMenu, changeMenu, open, select, dblSelect, changeTab, closeTab, rearrangeTab }
+export { parsedMenu, changeMenu, open, select, changeTab, closeTab, rearrangeTab }
