@@ -1,3 +1,17 @@
+.line-chart-title {
+	text-align: center;
+  font-size: 14px;
+}
+
+.recharts-legend-wrapper-addon {
+	margin-right: 10%;
+	height: 13px;
+}
+
+.recharts-legend-item-addon {
+	float: right;
+}
+
 .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
   padding: 8px 8px;
 }
@@ -8,6 +22,14 @@
 
 .ant-table {
 	overflow: visible;
+}
+
+.ant-table-thead > tr > th {
+	background: #fff;
+}
+
+.ant-table-tbody tr:nth-child(even) {
+	background: #F9F9F9;
 }
 
 .ant-pagination-item {

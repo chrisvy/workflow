@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import MyTable from './tables';
-import MyRechart from './recharts';
+import MyTable from './MyTable';
+import MyRechart from './MyRechart';
 
 export default class Contents extends Component {
   constructor(props, context) {
@@ -12,8 +12,8 @@ export default class Contents extends Component {
   render() {
   	
     return <div className="table-box">
-    	<MyTable />
     	<MyRechart />
+      <MyTable />
     </div>
   }
 }
