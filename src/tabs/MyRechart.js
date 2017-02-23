@@ -17,7 +17,7 @@ const data = [
   { name: '18:00', meanTime: 41, actualTime: 41, amt: 24, range: [15, 60] },
 ];
 
-const initilaState = {
+const initialState = {
   data
 };
 
@@ -79,7 +79,7 @@ export default React.createClass({
   displayName: 'LineChartDemo',
 
   getInitialState() {
-    return initilaState;
+    return initialState;
   },
 
   handleClick(data, e) {
