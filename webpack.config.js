@@ -19,7 +19,7 @@ module.exports = {
           exclude: /node_modules/,
           include: __dirname,
           query: {
-            plugins: ['transform-decorators-legacy' ],
+            plugins: ['transform-decorators-legacy', "lodash"],
             presets: ['es2015','react', 'stage-0']
           }
       },

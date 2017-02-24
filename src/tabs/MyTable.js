@@ -3,23 +3,6 @@ import classNames from 'classnames';
 import { Table, Icon, Tag } from 'antd';
 import './table.css';
 
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  status: 'running',
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  status: 'success',
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  status: 'killed',
-  address: 'Sidney No. 1 Lake Park',
-}];
-
 export default class MyTable extends Component {
   constructor(props, context) {
     super(props, context);
@@ -30,9 +13,12 @@ export default class MyTable extends Component {
   }
 
   handleChange = (pagination, filters, sorter) => {
+    //pagination: {pageSize: 10, current: 2}
+    // console.log("sorter", sorter);
     this.setState({
       sortedInfo: sorter
     });
+    this.props.handlePage(pagination, sorter);
   }
 
   handleRowClick = (record, index) => {
@@ -54,24 +40,37 @@ export default class MyTable extends Component {
     }
   }
 
+  mySorter = (sorter, a, b) => {
+    let result = 0;
+    let aa = typeof a[sorter.field] ==="string" ? a[sorter.field].toLowerCase() : a[sorter.field];
+    let bb = typeof b[sorter.field] ==="string" ? b[sorter.field].toLowerCase() : b[sorter.field];
+    if (aa < bb) {
+      result = -1;
+    } else {
+      result = 1;
+    }
+    return result;
+  }
+
   render() {
+    const { data } = this.props;
   	let { sortedInfo } = this.state;
 		sortedInfo = sortedInfo || {};
 		const columns = [{
-      title: 'Key',
-      dataIndex: 'key',
-      key: 'key',
+      title: '节点运行编号',
+      dataIndex: 'nodeNum',
+      key: 'nodeNum',
       render: text => <a href="#">{text}</a>,
-      sorter: (a, b) => a.key - b.key,
-      sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
+      sorter: (a, b) => this.mySorter(sortedInfo, a, b),//(a, b) => a.nodeNum - b.nodeNum
+      sortOrder: sortedInfo.columnKey === 'nodeNum' && sortedInfo.order,
     }, {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      sorter: (a, b) => a.name.length - b.name.length,
-      sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
+      title: '工作流运行编号',
+      dataIndex: 'workNum',
+      key: 'workNum',
+      sorter: (a, b) => this.mySorter(sortedInfo, a, b),
+      sortOrder: sortedInfo.columnKey === 'workNum' && sortedInfo.order,
     }, {
-      title: 'Status',
+      title: '状态',
       dataIndex: 'status',
       key: 'status',
       render: text => {
@@ -94,19 +93,21 @@ export default class MyTable extends Component {
         }
         return statusTag
       },
-      sorter: (a, b) => a.status - b.status,
+      sorter: (a, b) => this.mySorter(sortedInfo, a, b),
       sortOrder: sortedInfo.columnKey === 'status' && sortedInfo.order,
     }, {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
+      title: '执行用户',
+      dataIndex: 'executor',
+      key: 'executor',
+      sorter: (a, b) => this.mySorter(sortedInfo, a, b),
+      sortOrder: sortedInfo.columnKey === 'executor' && sortedInfo.order,
     }];
     return <div className="table-box">
-    	<Table 
+    	<Table
+        rowKey = 'nodeNum'
 	    	columns={columns} 
 	    	dataSource={data} 
+        pagination={{ pageSize: 10 }}
 	    	bordered
 	    	onRowClick={this.handleRowClick}
 	    	onChange={this.handleChange} 
