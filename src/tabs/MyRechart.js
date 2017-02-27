@@ -111,6 +111,23 @@ export default class MyRechart extends Component {
               data={data}
               margin={{top: 10, bottom: 10, left: 10, right: 10}}
               onClick={this.handleClick}
+              syncId="anyId"
+            >
+              <XAxis dataKey='startTime' interval={0} label={"开始时间"} axisLine={false} tickLine={false} tick={<CustomizedAxisTick/>} />
+              <YAxis label={"耗时"} axisLine={false} tickLine={false} />
+              <Tooltip/>
+              <Legend align="right" verticalAlign="top" height={36}/>
+              <CartesianGrid stroke='#f5f5f5' />
+              <Line type='linear' dataKey='meanTime' stroke='#C1C1C1' strokeWidth={3} dot={<MeanDot />} activeDot={{fill: '#C1C1C1', stroke: 'none'}} name={"平均耗时"} />
+              <Line type='linear' dataKey='actualTime' stroke='#84B9ED' strokeWidth={3} dot={<ActualDot />} activeDot={<ActiveActualDot />} name={"实际耗时"} />
+            </LineChart>
+          </ResponsiveContainer>
+          <ResponsiveContainer width="90%" height={300}>
+            <LineChart
+              data={data}
+              margin={{top: 10, bottom: 10, left: 10, right: 10}}
+              onClick={this.handleClick}
+              syncId="anyId"
             >
               <XAxis dataKey='startTime' interval={0} label={"开始时间"} axisLine={false} tickLine={false} tick={<CustomizedAxisTick/>} />
               <YAxis label={"耗时"} axisLine={false} tickLine={false} />

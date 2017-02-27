@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Table, Icon, Tag } from 'antd';
 import './table.css';
+// import EventEmitter from 'events';
+// const eventCenter = new EventEmitter();
+// const SYNC_EVENT = 'recharts.syncMouseEvents';
+import { eventCenter, SYNC_EVENT } from 'recharts/lib/util/Events';
 
 export default class MyTable extends Component {
   constructor(props, context) {
@@ -22,7 +26,41 @@ export default class MyTable extends Component {
   }
 
   handleRowClick = (record, index) => {
+    const { data } = this.props;
   	console.log("handleRowClick", index);
+    const rechartData = {
+      chartX: 70,//this seem to be useless
+      chartY: 230,
+      activeTooltipIndex: index,//actually, this one is used to calcute ths chartX
+      activeLabel: data[index]["startTime"],
+      activePayload: [{
+        color:"#C1C1C1",
+        dataKey:"meanTime",
+        fill:"#fff",
+        formatter:undefined,
+        name:"平均耗时",
+        payload: data[index],
+        stroke:"#C1C1C1",
+        strokeWidth:3,
+        unit:undefined,
+        value:6
+      },{
+        color:"#84B9ED",
+        dataKey:"actualTime",
+        fill:"#fff",
+        formatter:undefined,
+        name:"实时耗时",
+        payload: data[index],
+        stroke:"#84B9ED",
+        strokeWidth:3,
+        unit:undefined,
+        value:4
+      }],
+      activeCoordinate: {x: 70, y: 230},
+      isTooltipActive:true
+    };
+    eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", rechartData);
+    console.log(SYNC_EVENT, "anyId", "recharts8", rechartData);
   }
 
   renderStatus = (text) => {
