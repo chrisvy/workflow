@@ -82,10 +82,12 @@ export default class MyRechart extends Component {
   }
 
   handleClick = (moveData, e) => {
-    const { isTooltipActive, activeTooltipIndex } = moveData;
-    // console.log(data);
-    const { chartCtrlTable } = this.props;
-    chartCtrlTable(isTooltipActive, activeTooltipIndex);
+    if (moveData !== null) {
+      const { isTooltipActive, activeTooltipIndex } = moveData;
+      // console.log(data);
+      const { chartCtrlTable } = this.props;
+      chartCtrlTable(isTooltipActive, activeTooltipIndex);
+    }
   }
 
   handleMouseEnter = (data, e) => {//失效，并没有触发该事件
