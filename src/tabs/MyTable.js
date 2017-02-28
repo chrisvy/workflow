@@ -26,7 +26,7 @@ export default class MyTable extends Component {
   }
 
   handleRowHover = (flag, record, index) => {
-    console.log("handleRowHover");
+    // console.log("handleRowHover");
     if (!flag) {
       eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", {
         isTooltipActive: false
@@ -67,12 +67,12 @@ export default class MyTable extends Component {
       isTooltipActive:true
     };
     eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", rechartData);
-    console.log(SYNC_EVENT, "anyId", "recharts8", rechartData);
+    // console.log(SYNC_EVENT, "anyId", "recharts8", rechartData);
   }
 
   handleRowClick = (record, index) => {
     const { data } = this.props;
-    console.log("handleRowClick", index);
+    // console.log("handleRowClick", index);
   }
 
   rowClassName = (record, index) => {

@@ -94,13 +94,13 @@ export default class MyRechart extends Component {
 
   fn = _.throttle((isTooltipActive, activeTooltipIndex) => {
     const { chartCtrlTable } = this.props;
-    console.log(2, "move inner");
+    // console.log(2, "move inner");
     chartCtrlTable(isTooltipActive, activeTooltipIndex)
   }, 200)
 
   handleMouseMove = (moveData, e) => {
     const { isTooltipActive, activeTooltipIndex } = moveData;
-    console.log(1, "move", isTooltipActive, activeTooltipIndex);
+    // console.log(1, "move", isTooltipActive, activeTooltipIndex);
     // this.fn(isTooltipActive, activeTooltipIndex);
     const { chartCtrlTable } = this.props;
     // chartCtrlTable(isTooltipActive, activeTooltipIndex);
@@ -110,7 +110,7 @@ export default class MyRechart extends Component {
   }
 
   mycomponentWillUpdate = (nextProps, nextState) => {
-    console.log("componentWillUpdate");
+    // console.log("componentWillUpdate");
     const { isTooltipActive, activeTooltipIndex } = nextState;
     if (!isTooltipActive) {
       eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", {
@@ -155,16 +155,16 @@ export default class MyRechart extends Component {
     console.log(SYNC_EVENT, "anyId", "recharts8", rechartData);
   }
   
-  componentWillUnmount = () => {
-    console.log("componentWillUnmount");
-  }
+  // componentWillUnmount = () => {
+  //   console.log("componentWillUnmount");
+  // }
 
   handleMouseLeave = (data, e) => {
-    console.log(3, "leave", data);
+    // console.log(3, "leave", data);
     const { isTooltipActive, activeTooltipIndex } = data;
     const { chartCtrlTable } = this.props;
     // console.log("leave chartCtrlTable", chartCtrlTable);
-    // chartCtrlTable(isTooltipActive, activeTooltipIndex);
+    chartCtrlTable(isTooltipActive, activeTooltipIndex);
   }
 
   renderLabel = () => {

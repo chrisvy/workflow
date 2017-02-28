@@ -60,6 +60,7 @@ const menuReducer = (state=menuDefaultState, action) => {
         activeIndex: action.data.newActiveIndex
       })
     case 'CLOSETAB':
+      let newActive;
       if (action.data === state.activeIndex && 0 === state.activeIndex) {
         newActive = 0;
       } else if (action.data <= state.activeIndex) {

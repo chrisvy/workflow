@@ -58,7 +58,7 @@ export default class LinkChart extends Component {
   }
 
   chartCtrlTable = (isTooltipActive, activeTooltipIndex)  => {
-    console.log("test", isTooltipActive, activeTooltipIndex);
+    // console.log("test", isTooltipActive, activeTooltipIndex);
     // if (isTooltipActive) {
     //   this.setState({
     //     activeRow: activeTooltipIndex
