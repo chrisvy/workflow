@@ -25,9 +25,16 @@ export default class MyTable extends Component {
     this.props.handlePage(pagination, sorter);
   }
 
-  handleRowClick = (record, index) => {
+  handleRowHover = (flag, record, index) => {
+    console.log("handleRowHover");
+    if (!flag) {
+      eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", {
+        isTooltipActive: false
+      });
+      return
+    }
     const { data } = this.props;
-  	console.log("handleRowClick", index);
+  	// console.log("handleRowHover", index);
     const rechartData = {
       chartX: 70,//this seem to be useless
       chartY: 230,
@@ -61,6 +68,21 @@ export default class MyTable extends Component {
     };
     eventCenter.emit(SYNC_EVENT, "anyId", "recharts8", rechartData);
     console.log(SYNC_EVENT, "anyId", "recharts8", rechartData);
+  }
+
+  handleRowClick = (record, index) => {
+    const { data } = this.props;
+    console.log("handleRowClick", index);
+  }
+
+  rowClassName = (record, index) => {
+    const { activeRow } = this.props;
+    // console.log("rowClassName", index, activeRow);
+    if (activeRow === index) {
+      return "table-row-selected";
+    } else {
+      return "table-row-normal";
+    }
   }
 
   renderStatus = (text) => {
@@ -146,8 +168,10 @@ export default class MyTable extends Component {
 	    	columns={columns} 
 	    	dataSource={data} 
         pagination={{ pageSize: 10 }}
+        rowClassName={this.rowClassName}
 	    	bordered
 	    	onRowClick={this.handleRowClick}
+        onRowHover={this.handleRowHover}
 	    	onChange={this.handleChange} 
 	    />
     </div>

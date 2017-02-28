@@ -29,7 +29,8 @@ export default class LinkChart extends Component {
 
     this.state = {
       data: data,
-      chartData: data.slice(0, 10)
+      chartData: data.slice(0, 10),
+      activeRow: -1
     }
   }
 
@@ -56,13 +57,29 @@ export default class LinkChart extends Component {
     const res = datacp.map(item => item[sorter.field]);
   }
 
+  chartCtrlTable = (isTooltipActive, activeTooltipIndex)  => {
+    console.log("test", isTooltipActive, activeTooltipIndex);
+    // if (isTooltipActive) {
+    //   this.setState({
+    //     activeRow: activeTooltipIndex
+    //   });
+    // } else {
+    //   this.setState({
+    //     activeRow: -1
+    //   });
+    // }
+    this.setState({
+        activeRow: activeTooltipIndex
+      });
+  }
+
   render() {
     const { data, chartData } = this.state;
 
     return (
       <div>
-        <MyRechart data={chartData} />
-        <MyTable data={data} handlePage={this.handlePage} />
+        <MyRechart data={chartData} chartCtrlTable={this.chartCtrlTable} />
+        <MyTable data={data} handlePage={this.handlePage} activeRow={this.state.activeRow} />
       </div>
     )
   }

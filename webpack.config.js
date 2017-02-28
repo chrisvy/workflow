@@ -19,7 +19,10 @@ module.exports = {
           exclude: /node_modules/,
           include: __dirname,
           query: {
-            plugins: ['transform-decorators-legacy', "lodash"],
+            plugins: ['transform-decorators-legacy', "lodash", ["import", {
+            "libraryName": "antd",
+            "style": true,   // or 'css' 
+            }]],
             presets: ['es2015','react', 'stage-0']
           }
       },
@@ -30,6 +33,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
       },
       {
         test: /\.css$/,

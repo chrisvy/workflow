@@ -1,3 +1,9 @@
 {
-  "plugins": ["transform-decorators-legacy", "lodash"]
+  "plugins": [
+  "transform-decorators-legacy", "lodash",
+  ["import", {
+	  "libraryName": "antd",
+	  "style": true,   // or 'css' 
+	}]
+	]
 }

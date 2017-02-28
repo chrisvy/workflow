@@ -32,6 +32,11 @@
 	background: #F9F9F9;
 }
 
+.ant-table-tbody tr:hover,
+.ant-table-tbody tr.table-row-selected {
+	background: #ecf6fd;
+}
+
 .ant-pagination-item {
 	border-radius: 0;
   margin-right: 0;
