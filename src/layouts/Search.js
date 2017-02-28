@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon } from 'antd';//, Input
+import { Icon } from 'yo-component';//, Input
 import { search, searchResults, deleteSearchItem } from '../actions/actions';
 // import { search } from '../redux/actions';
 // import 'searchd/dist/searchd.css';//不需要

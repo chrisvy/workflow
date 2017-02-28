@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Input } from 'antd';
+import { Modal, Input } from 'yo-component';
 import { contextItem, rmWork } from '../actions/actions';
 
 class RemoveModal extends Component {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Tabs } from 'antd';
-import 'antd/dist/antd.css';
+import { Tabs } from 'yo-component';
+import 'yo-component/dist/antd.css';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ItemTypes from './Constants';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { Table, Icon, Tag } from 'antd';
+import { Table, Icon, Tag } from 'yo-component';
 import './table.css';
 // import EventEmitter from 'events';
 // const eventCenter = new EventEmitter();

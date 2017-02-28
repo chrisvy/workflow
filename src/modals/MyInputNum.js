@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Radio, Checkbox, InputNumber } from 'antd';
+import { Tabs, Radio, Checkbox, InputNumber } from 'yo-component';
 const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
 import { cronTab, cronRadio, cronAddon } from '../actions/cronmakerAction';

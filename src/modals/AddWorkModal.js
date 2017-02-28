@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Modal, Input, Radio } from 'antd';
+import { Row, Col, Modal, Input, Radio } from 'yo-component';
 const RadioGroup = Radio.Group;
 import Cronmaker from './Cronmaker';
 import Cascader from '../Cascader/index';

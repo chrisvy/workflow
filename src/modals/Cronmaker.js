@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Radio, Checkbox, InputNumber } from 'antd';
+import { Tabs, Radio, Checkbox, InputNumber } from 'yo-component';
 const TabPane = Tabs.TabPane;
 const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;

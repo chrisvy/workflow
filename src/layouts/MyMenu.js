@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import 'antd/dist/antd.css';
+import 'yo-component/dist/antd.css';
 import '../styles/leftNav.css';
 // import MyMenuItem from './MyMenuItem';
 import Search from './Search';

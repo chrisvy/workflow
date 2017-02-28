@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tabs } from 'antd';
-import 'antd/dist/antd.css';
+import { Tabs } from 'yo-component';
+import 'yo-component/dist/antd.css';
 const TabPane = Tabs.TabPane;
 import BoardTop from '../dragdrop/BoardTop';
 import '../styles/tabContent.css';
