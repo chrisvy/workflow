@@ -1,0 +1,74 @@
+.myprogress {
+	width: 300px;
+	margin : 30px;
+	position: relative;
+}
+
+.ant-progress-bg {
+	border-radius: 100px 0 0 100px;
+	animation: myprogress 1s ease;
+}
+
+@keyframes myprogress {
+	from { width: 0; }
+}
+
+.myprogress-text {
+	position: relative;
+	height: 20px;
+	text-align: center;
+	display: inline-block;
+	border: solid #eee 1px;
+	border-radius: 3px;
+	background-color: #eee;
+	animation: mytooltip;
+}
+
+@keyframes mytooltip {
+	from { left: 0; }
+}
+
+.myprogress-percent {
+	top: -5px;
+	width: 41px;
+	left: 15px;
+}
+
+.myprogress-percent:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 19px;
+	left: 14px;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 8px solid #eee;
+}
+
+.myprogress-time {
+	top: 5px;
+}
+
+.myprogress-time:before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -9px;
+	left: 14px;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 8px solid #eee;
+}
+
+.myprogress-time-left {
+	left: 15px;
+}
+
+.myprogress-time-right {
+	left: 45px;
+}
+
+
+
