@@ -1,0 +1,82 @@
+.myprogress {
+	width: 300px;
+	margin : 30px;
+	position: relative;
+}
+
+.ant-progress-bg {
+	border-radius: 100px 0 0 100px;
+	animation: myprogress 1s ease;
+}
+
+@keyframes myprogress {
+	from { width: 0; }
+}
+
+.myprogress-text {
+	position: relative;
+	height: 20px;
+	text-align: center;
+	display: inline-block;
+	border: solid #eee 1px;
+	border-radius: 3px;
+	background-color: #eee;
+	opacity: 1;
+	animation: mytooltip 1s ease;
+}
+
+@keyframes mytooltip {
+	from { left: 0; opacity: 0; }
+}
+
+.myprogress-percent {
+	top: -5px;
+	padding: 0 8px;
+	/*left: 30%;*/
+	transform: translate(-50%, 0);
+}
+
+.myprogress-percent:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 19px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 6px solid #eee;
+}
+
+.myprogress-time {
+	position: absolute;
+	padding: 0 8px;
+	top: 43px;
+}
+
+.myprogress-time:before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -6px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 6px solid #eee;
+}
+
+.myprogress-time-left {
+	/*left: 15px;*/
+	transform: translate(-50%, 0);
+}
+
+.myprogress-time-right {
+	/*left: 45px;*/
+	transform: translate(-50%, 0);
+}
+
+
+
