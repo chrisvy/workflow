@@ -1,0 +1,82 @@
+.tabs-box {
+	display: inline-block;
+}
+
+.ant-tabs-nav-container.yo-tabs-nav-container {
+	height: 27px;
+	line-height: 27px;
+	background-color: #f5f5f5;
+	overflow: visible;
+	position: fixed;
+	width: 85%;
+	z-index: 10;
+}
+
+.yo-tabs-nav .ant-tabs-tab .anticon {
+	margin: 0;
+}
+
+.context-wrapper>.my-tabs-tab {
+	padding: 0 !important;
+	background-color: #f9f9f9;
+	border-right: solid 1px #eee;
+}
+
+.yo-tabs-nav .ant-tabs-tab-active {
+	background-color: #fff;
+}
+
+.my-tabs-tab-title {
+	margin: 0 8px 0 6px;
+}
+
+.add-tabs-button {
+	padding: 0 8px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.add-tabs-overflow {
+	float: right;
+	display: block;
+	position: relative;
+}
+
+.add-tabs-overflow-text {
+	line-height: 27px;
+	cursor: pointer;
+}
+	
+.add-tabs-addon-lists {
+	position: absolute;
+  z-index: 1000;
+  right: 0;
+  max-height: 500px;
+  overflow: visible;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  animation: dropdownopen .3s ease-out;
+}
+
+.add-tabs-addon-lists:before {
+  right: 12px;
+  position: absolute;
+  top: -7px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: #fff;
+  content: '';
+}
+
+@keyframes dropdownopen {
+	0% {display: none}
+	100% {display: block}
+}
+
+.add-tabs-addon-item {
+	cursor: pointer;
+}

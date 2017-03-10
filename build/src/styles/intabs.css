@@ -1,0 +1,20 @@
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+  border-bottom: 0;
+  border-radius: 0;
+  transition: all 0s;
+  background: #fff;
+  margin: 0;
+  color: #000;
+  border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: solid 1px #dcdcdc;
+}
+
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+	border-top: solid 1px #84c2e7;
+	border-left: solid 1px #dcdcdc;
+	border-right: solid 1px #dcdcdc;
+	font-weight: bold;
+  box-shadow: 0 2px #84c2e7 inset;
+}

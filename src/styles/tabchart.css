@@ -1,0 +1,64 @@
+.recharts-responsive-container {
+	margin-left: -22px;
+}
+
+.line-chart-title {
+	text-align: center;
+  font-size: 14px;
+}
+
+.recharts-legend-wrapper-addon {
+	margin-right: 42px;
+	height: 13px;
+}
+
+.recharts-default-legend-addon {
+	text-align: right;
+}
+
+.recharts-legend-item-addon {
+	display: inline;
+}
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 8px 8px;
+}
+
+.table-box {
+	padding: 15px 20px;
+}
+
+.ant-table {
+	overflow: visible;
+}
+
+.ant-table-thead > tr > th {
+	background: #fff;
+}
+
+.ant-table-tbody tr:nth-child(even) {
+	background: #F9F9F9;
+}
+
+.ant-table-tbody tr:hover,
+.ant-table-tbody tr.table-row-selected {
+	background: #ecf6fd;
+}
+
+.ant-pagination-item {
+	border-collapse: collapse;
+	border-radius: 0;
+  margin-right: 0;
+}
+
+.ant-pagination-prev,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+	border-radius: 3px 0 0 3px;
+	margin-right: 0;
+}
+
+.ant-pagination-next {
+	border-radius: 0 3px 3px 0;
+}
+

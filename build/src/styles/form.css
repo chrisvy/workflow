@@ -1,0 +1,58 @@
+.form-node-config {
+	width: 600px;
+	margin: 15px auto;
+}
+
+.form-ctrl-title {
+	cursor: pointer;
+	color: #23b7e5;
+	text-align: right;
+}
+
+.form-title {
+	text-align: right;
+	font-weight: bold;
+}
+
+.form-sub-title {
+  cursor: pointer;
+  color: #23b7e5;
+}
+
+.form-title-addon {
+	cursor: pointer;
+}
+
+.form-title-addon:after {
+	font-family: anticon!important;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  position: absolute;
+  transition: transform .3s ease;
+  content: "\E61D";
+  right: 0;
+  top: 1px;
+}
+
+.form-title-addon-close:after {
+  transform: rotate(-90deg);
+}
+
+.form-title-addon-open:after {
+	transform: rotate(0);
+}
+
+.ant-form-item-control span {
+  float: right;
+}
+
+.form-adv-conf-show {
+  display: block;
+}
+
+.form-adv-conf-hide {
+  display: none;
+}
